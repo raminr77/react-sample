@@ -1,25 +1,44 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+  "name": "React Sample",
+  "short_name": "React Sample",
+  "author": "Ramin Rezaei",
+  "icons": [{
+      "src": "icons/logo76.png",
+      "type": "icons/png",
+      "sizes": "76x76"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
+      "src": "icons/logo96.png",
+      "type": "icons/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "icons/logo120.png",
+      "type": "icons/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "icons/logo152.png",
+      "type": "icons/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "icons/logo192.png",
+      "type": "icons/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "icons/logo512.png",
+      "type": "icons/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "dir": "rtl",
+  "lang": "fa-IR",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1e283c",
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "description": "Start Your React Project With A Ready Config!"
 }
