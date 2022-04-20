@@ -9,6 +9,7 @@ In this project, we added some configs and installed some necessary packages. th
 
 -   Configs
     -   SEO & PWA tags
+    -   PWA Configs
     -   Edit `manigest.json`
 -   Packages
 -   Hooks
