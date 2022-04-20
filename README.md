@@ -8,10 +8,8 @@ In this project, we added some configs and installed some necessary packages. th
 <br />
 
 -   Configs
-    -   test
+    -   SEO & PWA tags
+    -   Edit `manigest.json`
 -   Packages
-    -   test
 -   Hooks
-    -   test
 -   Tools (utils)
-    -   test
