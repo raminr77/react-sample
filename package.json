@@ -2,6 +2,7 @@
   "name": "react_sample",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
@@ -15,13 +16,23 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx}",
+    "pretty": "prettier --write \"src/**/*.{js,jsx,css,scss}\"",
+    "lint:style": "npx stylelint \"src/**/*.{css,scss}\" --allow-empty-input"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "prettier --write",
+      "eslint"
+    ],
+    "src/**/*.{json,css,scss}": "prettier --write"
   },
   "browserslist": {
     "production": [
@@ -34,5 +45,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.0",
+    "prettier": "^2.6.2",
+    "stylelint": "^14.7.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^25.0.0"
   }
 }

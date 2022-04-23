@@ -1,0 +1,12 @@
+*.svg
+*.png
+*.jpg
+/public/*.html
+/src/assets/images/**/*
+/src/assets/videos/**/*
+/src/assets/fonts/**/*
+
+node_modules
+# Ignore artifacts:
+build
+coverage
