@@ -1,9 +1,17 @@
 import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
 
-import { USER_LOGIN_ROUTE } from 'routes/RedirectRoutes';
+import { NOT_FOUND_ROUTE, USER_LOGIN_ROUTE } from 'routes/RedirectRoutes';
 
-export const PrivateRoute = ({ isAuthenticated = false, element: Component, ...rest }) => {
+export const PrivateRoute = ({
+  isAuthenticated = false,
+  element: Component,
+  deactivate = false,
+  ...rest
+}) => {
+  if (deactivate) {
+    return <Route {...rest} element={<Navigate to={NOT_FOUND_ROUTE} />} />;
+  }
   return (
     <Route
       {...rest}
