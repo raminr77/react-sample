@@ -1,3 +1,21 @@
+@import './animate.min.css';
+@import './reset.min.css';
+@import './fonts.css';
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  direction: rtl;
+  font-family: yekanN;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
 /*! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com*/
 *,
 :after,
@@ -246,6 +264,12 @@ video {
   --tw-backdrop-saturate: ;
   --tw-backdrop-sepia: ;
 }
+.visible {
+  visibility: visible;
+}
+.fixed {
+  position: fixed;
+}
 .absolute {
   position: absolute;
 }
@@ -253,4 +277,16 @@ video {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.yekan-font {
+  font-family: yekanN;
+}
+.sans-font {
+  font-family: IRANSansN;
+}
+.yekan-font-bold {
+  font-family: yekanB;
+}
+.sans-font-bold {
+  font-family: IRANSansB;
 }

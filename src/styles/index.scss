@@ -1,3 +1,7 @@
+@import './animate.min.css';
+@import './reset.min.css';
+@import './fonts.css';
+
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +12,26 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  direction: rtl;
+  overflow-x: hidden;
+  font-family: yekanN;
+  font-weight: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.yekan-font {
+  font-family: yekanN;
+}
+.sans-font {
+  font-family: IRANSansN;
+}
+.yekan-font-bold {
+  font-family: yekanB;
+}
+.sans-font-bold {
+  font-family: IRANSansB;
+}
