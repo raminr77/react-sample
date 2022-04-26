@@ -25,9 +25,9 @@
   "scripts": {
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "start": "react-scripts start",
     "dev": "start yarn run styles && yarn start",
     "lint:fix": "eslint --fix src/**/*.{js,jsx}",
-    "start": "yarn build:styles & react-scripts start",
     "build": "yarn build:styles & react-scripts build",
     "pretty": "prettier --write \"src/**/*.{js,jsx,css,scss}\"",
     "lint:style": "npx stylelint \"src/**/*.{css,scss}\" --allow-empty-input",
@@ -43,7 +43,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx}": [
       "prettier --write",
-      "eslint"
+      "eslint --fix"
     ],
     "src/**/*.{json,css,scss}": "prettier --write"
   },

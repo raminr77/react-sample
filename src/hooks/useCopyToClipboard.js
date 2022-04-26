@@ -4,7 +4,7 @@ export const useCopyToClipboard = (
   successMessage = 'کپی شد',
   failureMessage = 'مجددا تلاش کنید'
 ) => {
-  const [copyStatus, setCopyStatus] = useState('');
+  const [status, setStatus] = useState('');
   const copy = (text, useOldSchoolMethod = false) => {
     const isNavigatorAvailable = !!navigator?.permissions && !!navigator?.clipboard?.writeText;
     if (!isNavigatorAvailable || useOldSchoolMethod) {
@@ -13,12 +13,12 @@ export const useCopyToClipboard = (
     }
     if (isNavigatorAvailable) {
       navigator.clipboard.writeText(text).then(
-        () => setCopyStatus(successMessage),
-        () => setCopyStatus(failureMessage)
+        () => setStatus(successMessage),
+        () => setStatus(failureMessage)
       );
 
       setTimeout(() => {
-        setCopyStatus('');
+        setStatus('');
       }, 5000);
     }
   };
@@ -39,16 +39,16 @@ export const useCopyToClipboard = (
 
     try {
       const successful = document.execCommand('copy');
-      setCopyStatus(successful ? successMessage : failureMessage);
+      setStatus(successful ? successMessage : failureMessage);
     } catch (err) {
-      setCopyStatus(failureMessage);
+      setStatus(failureMessage);
     }
     document.body.removeChild(textArea);
 
     setTimeout(() => {
-      setCopyStatus('');
+      setStatus('');
     }, 5000);
   };
 
-  return [copyStatus, copy];
+  return [status, copy];
 };
