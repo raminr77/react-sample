@@ -3,7 +3,7 @@ export function generateSnackbar(options) {
     return;
   }
 
-  let event = new CustomEvent('DKGenerateSnackbar', {
+  let event = new CustomEvent('GenerateSnackbar', {
     detail: options
   });
 
