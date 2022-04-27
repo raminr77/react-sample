@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { REDUCER_NAMES } from 'constants/reducerNames';
+import { REDUCER_NAMES } from 'constants/ReducerNames';
 
 import useReducer from 'store/user/userSlice';
 

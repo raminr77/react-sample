@@ -1,0 +1,7 @@
+export const SNACKBAR_TYPES = {
+  INFO: 'INFO',
+  ERROR: 'ERROR',
+  WARNING: 'WARNING',
+  MESSAGE: 'MESSAGE',
+  SUCCESS: 'SUCCESS'
+};
