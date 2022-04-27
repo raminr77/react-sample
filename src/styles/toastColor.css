@@ -1,0 +1,15 @@
+:root {
+  --toastify-color-light: #eee;
+  --toastify-color-dark: #121212;
+
+  --toastify-color-info: #1e88e5;
+  --toastify-color-error: #f72421;
+  --toastify-color-success: #4caf50;
+  --toastify-color-warning: #f57c00;
+
+  --toastify-z-index: 9999;
+  --toastify-font-family: yekan, sans-serif;
+}
+.Toastify__toast-body {
+  font-size: 14px;
+}

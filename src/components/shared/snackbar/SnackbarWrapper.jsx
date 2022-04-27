@@ -3,7 +3,7 @@ import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify
 
 import { SNACKBAR_POSITIONS, SNACKBAR_TYPES } from 'constants/Snackbar';
 
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const TOAST_COLOR_TYPES = {
   DARK: 'dark',
@@ -57,5 +57,15 @@ export const SnackbarWrapper = () => {
     };
   }, []);
 
-  return <ToastContainer rtl draggable closeOnClick pauseOnHover hideProgressBar />;
+  return (
+    <ToastContainer
+      rtl
+      limit={4}
+      draggable
+      closeOnClick
+      pauseOnHover
+      hideProgressBar
+      pauseOnFocusLoss={false}
+    />
+  );
 };
