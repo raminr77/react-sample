@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
+
 import { SNACKBAR_POSITIONS, SNACKBAR_TYPES } from 'constants/Snackbar';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,10 +12,10 @@ const TOAST_COLOR_TYPES = {
 };
 
 const TOAST_TRANSITION_TYPES = {
-  ZOOM: 'zoom',
-  FLIP: 'flip',
-  SLIDE: 'slide',
-  BOUNCE: 'bounce'
+  ZOOM: Zoom,
+  FLIP: Flip,
+  SLIDE: Slide,
+  BOUNCE: Bounce
 };
 
 export const SnackbarWrapper = () => {
@@ -22,15 +23,16 @@ export const SnackbarWrapper = () => {
     const {
       message,
       icon = null,
-      delay = 5000,
+      delay = 3000,
       type = SNACKBAR_TYPES.MESSAGE,
       position = SNACKBAR_POSITIONS.BOTTOM_CENTER
     } = e.detail;
+    const toastId = type + message;
 
     if (type === SNACKBAR_TYPES.MESSAGE) {
       return toast(message, {
+        toastId,
         position,
-        toastId: message,
         autoClose: delay,
         icon: () => icon,
         theme: TOAST_COLOR_TYPES.DARK,
@@ -39,12 +41,12 @@ export const SnackbarWrapper = () => {
     }
 
     toast[type]?.(message, {
+      toastId,
       position,
-      toastId: message,
       autoClose: delay,
       icon: () => icon,
       theme: TOAST_COLOR_TYPES.COLORED,
-      transition: TOAST_TRANSITION_TYPES.FLIP
+      transition: TOAST_TRANSITION_TYPES.SLIDE
     });
   };
 
