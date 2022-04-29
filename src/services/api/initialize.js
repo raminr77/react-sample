@@ -1,5 +1,6 @@
 import QS from 'qs';
 import axios from 'axios';
+import { isMobile } from 'react-device-detect';
 
 import { generateSnackbar } from 'utils/generateSnackbar';
 import { CONNECTION_ERROR } from 'constants/ErrorMessages';
@@ -11,6 +12,8 @@ let isAPILock = false;
 let requestPerSecondCount = 0;
 let prevAPICallTime = new Date().getTime();
 
+const getDeviceType = () => (isMobile ? 'mobile' : 'desktop');
+
 const $axios = axios.create({
   timeout: 40000,
   withCredentials: true,
@@ -18,6 +21,7 @@ const $axios = axios.create({
   headers: {
     Accept: 'application/json',
     'X-Web-Optimize-Response': 1,
+    'X-Web-Client': getDeviceType(),
     Authorization: 'token ' + TOKEN,
     'Content-Type': 'application/json'
   }
