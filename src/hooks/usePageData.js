@@ -38,7 +38,6 @@ export const usePageData = ({
         .then((response) => {
           if (dataCached) {
             CACHE_DATA[CACHE_NAME] = { data: response, expireTime: new Date().getTime() };
-            return;
           }
           setData(response);
         })
