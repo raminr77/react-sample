@@ -47,7 +47,7 @@ function get({ url, config }) {
         handleResponse({ response, reject, resolve });
       })
       .catch((error) => {
-        sendLog({ url, error: { apiMethod: 'GET', error } });
+        sendLog({ url, method: 'GET' });
         reject(error);
       });
   });
@@ -60,7 +60,7 @@ function post({ url, data, config }) {
         handleResponse({ response, reject, resolve });
       })
       .catch((error) => {
-        sendLog({ url, error: { apiMethod: 'POST', error } });
+        sendLog({ url, method: 'POST' });
         reject(error);
       });
   });
