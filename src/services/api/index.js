@@ -10,7 +10,7 @@ import { serviceGet, servicePost } from 'services/api/initialize';
 import { INDEX_PAGE_ROUTE, NOT_FOUND_ROUTE, USER_LOGIN_ROUTE } from 'routes/RedirectRoutes';
 
 function handleResponse({ response, reject, resolve }) {
-  const status = response.data?.status || 500;
+  const status = response?.status || response.data?.status || 500;
   const message = response.data?.message || '';
 
   switch (status) {
