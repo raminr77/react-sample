@@ -22,6 +22,7 @@ export const usePageData = ({
     if (diffTime < cacheTime) {
       return true;
     }
+    delete CACHE_DATA[name];
     return false;
   };
 
