@@ -17,7 +17,7 @@ const getDeviceType = () => (isMobile ? 'mobile' : 'desktop');
 const $axios = axios.create({
   timeout: 40000,
   withCredentials: true,
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   headers: {
     Accept: 'application/json',
     'X-Web-Optimize-Response': 1,
