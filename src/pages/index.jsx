@@ -7,13 +7,14 @@ export const IndexPage = () => {
   const { data, reload, pending } = usePageData({
     apiMethod: getIndexPageData,
     disabled: false,
+    dataCached: true,
     apiData: {
       // your api data
       age: 24, // remove on inputTransformer
       name: 'ramin'
-    },
-    onError: (error) => console.log('PAGE ERROR:', error),
-    onSuccess: (response) => console.log('PAGE RESULT:', response)
+    }
+    // onError: (error) => console.log('PAGE ERROR:', error),
+    // onSuccess: (response) => console.log('PAGE RESULT:', response)
   });
 
   return (
