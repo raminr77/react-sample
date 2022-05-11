@@ -1,3 +1,7 @@
 export const indexPageTransformer = ({ data }) => {
-  return data;
+  // change or convert response
+  return data.map((item) => ({
+    title: item.title || '',
+    description: item.body || null
+  }));
 };
