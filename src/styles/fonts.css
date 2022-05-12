@@ -39,3 +39,22 @@
     url('../assets/fonts/Sans/IRANSansWeb_Light.woff') format('woff'),
     url('../assets/fonts/Sans/IRANSansWeb_Light.ttf') format('truetype');
 }
+@font-face {
+  font-family: yekanEN;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/YekanEn/iranyekanwebregular.eot');
+  src: url('../assets/fonts/YekanEn/iranyekanwebregular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/YekanEn/iranyekanwebregular.woff') format('woff'),
+    url('../assets/fonts/YekanEn/iranyekanwebregular.ttf') format('truetype');
+}
+@font-face {
+  font-family: yekanENB;
+  font-style: normal;
+  font-weight: normal;
+  font-weight: 800;
+  src: url('../assets/fonts/YekanEn/iranyekanwebextrabold.eot');
+  src: url('../assets/fonts/YekanEn/iranyekanwebextrabold.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/YekanEn/iranyekanwebextrabold.woff') format('woff'),
+    url('../assets/fonts/YekanEn/iranyekanwebextrabold.ttf') format('truetype');
+}
