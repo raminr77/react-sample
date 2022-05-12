@@ -5,7 +5,7 @@ import { isMobile } from 'react-device-detect';
 import { generateSnackbar } from 'utils/generateSnackbar';
 import { CONNECTION_ERROR } from 'constants/ErrorMessages';
 
-const TOKEN = '';
+const TOKEN = ''; // Read Your TOKEN
 const MAX_REQUEST_PER_SECOND = 20;
 
 let isAPILock = false;
