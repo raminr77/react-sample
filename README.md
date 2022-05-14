@@ -86,7 +86,6 @@ In this project, we added some configs and installed some necessary packages. th
 
 ## How To Run :)
 
-- `git clone`
 - `npm install` or `yarn add`
 - Just Run: `npm start`
 - Run white style watching:
