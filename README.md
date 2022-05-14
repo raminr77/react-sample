@@ -1,5 +1,7 @@
 # React Sample
 
+[![GitHub stars](https://img.shields.io/github/stars/raminr77/react_sample?style=social)](https://github.com/raminr77/react_sample/)
+
 ## Start your React Project with a ready config!
 
 this is a sample of the ReactJs project for starting easily and fast.
