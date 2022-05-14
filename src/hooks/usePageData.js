@@ -1,35 +1,34 @@
 import { sendLog } from 'services/log';
 import { useEffect, useState } from 'react';
-
-const CACHE_DATA = {};
+import {
+  setAPICache,
+  getAPICacheData,
+  checkAPICacheTime,
+  hasAPICache
+} from 'services/api/cacheSystem';
 
 export const usePageData = ({
   apiMethod,
   apiData = null,
   disabled = false,
   dataCached = false,
-  expireTime = 600000, // 10 min
   onError = () => {},
-  onSuccess = () => {}
+  onSuccess = () => {},
+  onFinally = () => {},
+  expireTime = 600000 // 10 min
 }) => {
   const [data, setData] = useState(null);
   const [pending, setPending] = useState(false);
   const CACHE_NAME = `CACHE_PAGE_REQUEST_[${apiMethod.url}]`;
 
-  const checkCacheTime = (name) => {
-    const cacheTime = CACHE_DATA[name]?.expireTime || 0;
-    const diffTime = new Date().getTime() - expireTime;
-    if (diffTime < cacheTime) {
-      return true;
-    }
-    delete CACHE_DATA[name];
-    return false;
-  };
-
   const fetchData = () => {
     if (!apiMethod || disabled) return;
-    if (dataCached && CACHE_DATA[CACHE_NAME] && checkCacheTime(CACHE_NAME)) {
-      setData(CACHE_DATA[CACHE_NAME].data);
+    if (
+      dataCached &&
+      hasAPICache(CACHE_NAME) &&
+      checkAPICacheTime({ name: CACHE_NAME, expireTime })
+    ) {
+      setData(getAPICacheData(CACHE_NAME));
       return;
     }
     setPending(true);
@@ -37,7 +36,7 @@ export const usePageData = ({
       apiMethod(apiData)
         .then((response) => {
           if (dataCached) {
-            CACHE_DATA[CACHE_NAME] = { data: response, expireTime: new Date().getTime() };
+            setAPICache({ name: CACHE_NAME, data: response });
           }
           setData(response);
         })
@@ -45,6 +44,7 @@ export const usePageData = ({
           onError?.(err);
         })
         .finally(() => {
+          onFinally?.();
           setPending(false);
         });
     } catch (e) {
