@@ -6,9 +6,9 @@ import { indexPageTransformer } from 'api/indexPage/transformer';
 export const getIndexPageData = apiRequestObject({
   url: INDEX_PAGE_EP,
   type: REQUEST_TYPE.GET,
-  inputTransformer: ({ name }) => ({
+  inputTransformer: ({ albumId }) => ({
     // change or convert your data
-    name
+    albumId
   }),
   transformer: indexPageTransformer // change or convert response
 });

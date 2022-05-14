@@ -1,1 +1,1 @@
-export const INDEX_PAGE_EP = '/posts/';
+export const INDEX_PAGE_EP = '/photos/';

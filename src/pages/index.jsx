@@ -1,35 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAPI } from 'hooks/useApi';
 import { usePageData } from 'hooks/usePageData';
 import { getIndexPageData } from 'api/indexPage';
 
 export const IndexPage = () => {
+  const [data, setData] = useState([]);
+  const [showMore, setShowMore] = useState(false);
   // usePageData Example
-  const { data, reload, pending } = usePageData({
+  const { reload, pending } = usePageData({
     apiMethod: getIndexPageData,
     disabled: false,
     dataCached: true,
     expireTime: 5000,
     apiData: {
       // ... your API data
-      name: 'ramin',
-      age: 24 // example: remove on inputTransformer
-    }
+      albumId: 1,
+      name: 'ramin' // example: remove on inputTransformer
+    },
+    onSuccess: (response) => setData(response)
     // onError: (error) => console.log('PAGE ERROR:', error),
-    // onSuccess: (response) => console.log('PAGE RESULT:', response)
   });
 
   // useAPI Example
   const { request, pending: loading } = useAPI({
     apiMethod: getIndexPageData,
-    requestDataOnLoad: { name: 'ramin' }
+    requestDataOnLoad: { albumId: 2 },
+    onSuccess: (response) => setData([...data, ...response])
     // onError: (error) => console.log('API ERROR:', error),
-    // onSuccess: (response) => console.log('API RESULT:', response)
   });
 
-  const apiRequest = () => {
-    request();
-  };
+  const apiRequest = () => request();
+  const showMoreData = () => setShowMore(true);
 
   return (
     <div dir='ltr' className='flex flex-col items-center'>
@@ -38,26 +39,40 @@ export const IndexPage = () => {
       {/* For reCall & call API */}
       <div className='flex items-center gap-x-4'>
         <button className='bg-green-600 text-gray-50 px-3 py-2 rounded-md' onClick={reload}>
-          Reload API
+          Load Request API (albumId = 1)
         </button>
         <button className='bg-cyan-600 text-gray-50 px-3 py-2 rounded-md' onClick={apiRequest}>
-          API Request
+          Other API Request (albumId = 2)
         </button>
       </div>
 
-      {(pending || loading) && (
-        <div className='w-full my-4 text-center mt-9 text-cyan-700'>LOADING ...</div>
-      )}
+      {pending && <div className='w-full my-4 text-center mt-9 text-cyan-700'>LOADING ...</div>}
 
       <ul className='mx-auto max-w-xl mt-5'>
         {Array.isArray(data) &&
-          data?.map((item, index) => (
-            <li key={index} className='mb-4 bg-gray-100 p-5 rounded-lg'>
-              <h3 className='mb-1 font-bold'>{item.title}</h3>
-              <p className='text-justify'>{item.description}</p>
+          data?.slice(0, showMore ? data?.length : 3)?.map((item, index) => (
+            <li key={index} className='flex items-start mb-4 bg-gray-100 p-5 rounded-lg'>
+              <img className='mr-4 rounded' width={120} src={item.url} />
+              <div className='pt-4'>
+                <h3 className='mb-1 font-bold'>
+                  {index + 1} - {item.title}
+                </h3>
+                <p className='text-cyan-600 font-bold'>Album Name: {item.album}</p>
+              </div>
             </li>
           ))}
       </ul>
+
+      {loading && <div className='w-full my-4 text-center mt-9 text-cyan-700'>LOADING ...</div>}
+
+      {!showMore && data?.length > 0 && (
+        <button
+          onClick={showMoreData}
+          className='bg-gray-600 mb-10 text-gray-50 px-3 py-2 rounded-md'
+        >
+          Show More
+        </button>
+      )}
     </div>
   );
 };
