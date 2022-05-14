@@ -18,6 +18,7 @@ In this project, we added some configs and installed some necessary packages. th
 
 - [How To Run](https://github.com/raminr77/react_sample#how-to-run)
 - [Other Commands](https://github.com/raminr77/react_sample#other-commands)
+- [API Pattern Example](https://github.com/raminr77/react_sample#api-pattern-example)
 - [You Can Use In This Project](https://github.com/raminr77/react_sample#you-can-use-in-this-project)
 
 <br />
@@ -99,12 +100,32 @@ In this project, we added some configs and installed some necessary packages. th
 - You can use `Vazir` font in this project. for change `EN` to `FA` number with font, use `fa-num-font` and `fa-num-font-bold` class. also you can use `vazir-bold` for bold type.
 - You can import file from `src` address like this:
 
-  `import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';`
+  <code>
+  import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';
+  </code>
+
+<br />
+
+## API Pattern Example
+
+- Your API
+
+  **TODO**
+
+- useApi
+
+  **TODO**
+
+- usePageData
+
+  **TODO**
 
 <br />
 
 ## How To Run
 
+- First Git Clone Or Download Project
+- Copy and rename `.env.example` to `.env`
 - `npm install` or `yarn add`
 - Just Run: `npm start`
 - Run white style watching:
@@ -120,3 +141,14 @@ In this project, we added some configs and installed some necessary packages. th
 - Stylelint: `npm run lint:style`
 - Styles (Watching): `npm run styles`
 - Build Styles: `npm run build:styles`
+
+<hr />
+
+### Project TODO
+
+- [x] usePageData
+- [x] cancel duplicate request
+- [ ] useApi
+- [ ] storybook
+- [ ] Add API pattern Doc to MD file
+- [ ] Add usePageData & UseApi Doc to MD file
