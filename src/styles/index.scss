@@ -1,4 +1,3 @@
-@import './animate.min.css';
 @import './reset.min.css';
 @import './toastColor.css';
 @import './fonts.css';
@@ -24,18 +23,6 @@ body {
 @tailwind components;
 @tailwind utilities;
 
-.en-font {
+.en-num-font {
   font-family: yekanEN;
-}
-.yekan-font {
-  font-family: yekanN;
-}
-.sans-font {
-  font-family: IRANSansN;
-}
-.yekan-font-bold {
-  font-family: yekanB;
-}
-.sans-font-bold {
-  font-family: IRANSansB;
 }

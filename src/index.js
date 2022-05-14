@@ -7,6 +7,7 @@ import { store } from 'store';
 import { Routes } from 'routes';
 import { SnackbarWrapper } from 'components/shared/snackbar/SnackbarWrapper';
 
+import 'animate.css';
 import 'styles/index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
