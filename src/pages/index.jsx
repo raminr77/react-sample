@@ -20,7 +20,7 @@ export const IndexPage = () => {
 
   return (
     <div dir='ltr' className='flex flex-col items-center'>
-      <h1 className='font-extrabold text-3xl my-5'>Index Page</h1>
+      <h1 className='font-extrabold text-3xl my-5 animate__animated animate__bounce'>Index Page</h1>
 
       {/* For reCall API */}
       <button className='bg-green-600 text-gray-50 px-3 py-2 rounded-md' onClick={reload}>
