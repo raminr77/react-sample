@@ -12,4 +12,4 @@ RUN npm install --silent
 COPY . .
 
 # Start App
-CMD ["npm", "start"]
+CMD ["npm", "build"]
