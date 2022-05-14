@@ -9,6 +9,21 @@ this is a sample of the ReactJs project for starting easily and fast.
 In this project, we added some configs and installed some necessary packages. they help you to ready very fast and don't waste time them.
 <br />
 
+## Contents
+
+- [Configs](https://github.com/raminr77/react_sample#Configs)
+- [Packages](https://github.com/raminr77/react_sample#Packages)
+- [Hooks](https://github.com/raminr77/react_sample#Hooks)
+- [Tools (utils)](https://github.com/raminr77/react_sample#tools-utils)
+
+- [How To Run](https://github.com/raminr77/react_sample#how-to-run)
+- [Other Commands](https://github.com/raminr77/react_sample#other-commands)
+- [You Can Use In This Project](https://github.com/raminr77/react_sample#you-can-use-in-this-project)
+
+<br />
+<hr />
+<br />
+
 - ## Configs
 
   - Eslint
@@ -34,6 +49,7 @@ In this project, we added some configs and installed some necessary packages. th
   - Transform data system for API request
 
 - ## Packages
+
   - sass (for component module sass)
   - animate.css (for your animations)
   - tailwindcss (for main style system)
@@ -46,6 +62,7 @@ In this project, we added some configs and installed some necessary packages. th
   - react-toastify (for notify message to user in your project)
   - react-device-detect (for check devices and specify mobile type)
   - @reduxjs/toolkit & react-redux (for state management in your project)
+
 - ## Hooks
 
   - useApi (for in page requests)
@@ -86,7 +103,7 @@ In this project, we added some configs and installed some necessary packages. th
 
 <br />
 
-## How To Run :)
+## How To Run
 
 - `npm install` or `yarn add`
 - Just Run: `npm start`
