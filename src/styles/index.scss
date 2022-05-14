@@ -15,14 +15,10 @@ html {
 body {
   direction: rtl;
   overflow-x: hidden;
-  font-family: yekanN;
   font-weight: normal;
+  font-family: Vazirmatn;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.en-num-font {
-  font-family: yekanEN;
-}

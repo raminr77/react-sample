@@ -1,60 +1,41 @@
-/* IRAN Yekan */
 @font-face {
-  font-family: yekanN;
+  font-family: Vazirmatn;
+  src: url('../assets/fonts/Vazir/Vazirmatn-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
   font-style: normal;
-  font-weight: normal;
-  src: url('../assets/fonts/Yekan/iranyekanwebregularfanum.eot');
-  src: url('../assets/fonts/Yekan/iranyekanwebregularfanum.eot?#iefix') format('embedded-opentype'),
-    url('../assets/fonts/Yekan/iranyekanwebregularfanum.woff') format('woff'),
-    url('../assets/fonts/Yekan/iranyekanwebregularfanum.ttf') format('truetype');
+  font-display: swap;
 }
+
 @font-face {
-  font-family: yekanB;
-  font-style: normal;
+  font-family: VazirmatnBold;
+  src: url('../assets/fonts/Vazir/Vazirmatn-ExtraBold.woff2') format('woff2');
   font-weight: 800;
-  src: url('../assets/fonts/Yekan/iranyekanwebextraboldfanum.eot');
-  src: url('../assets/fonts/Yekan/iranyekanwebextraboldfanum.eot?#iefix')
-      format('embedded-opentype'),
-    url('../assets/fonts/Yekan/iranyekanwebextraboldfanum.woff') format('woff'),
-    url('../assets/fonts/Yekan/iranyekanwebextraboldfanum.ttf') format('truetype');
-}
-/* IRAN Sans */
-@font-face {
-  font-family: IRANSansB;
   font-style: normal;
-  font-weight: bold;
-  src: url('../assets/fonts/Sans/IRANSansWeb_Bold.eot');
-  src: url('../assets/fonts/Sans/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'),
-    url('../assets/fonts/Sans/IRANSansWeb_Bold.woff2') format('woff2'),
-    url('../assets/fonts/Sans/IRANSansWeb_Bold.woff') format('woff'),
-    url('../assets/fonts/Sans/IRANSansWeb_Bold.ttf') format('truetype');
+  font-display: swap;
 }
+
 @font-face {
-  font-family: IRANSansN;
+  font-family: VazirmatnFaNum;
+  src: url('../assets/fonts/VazirFaNum/Vazirmatn-FD-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
   font-style: normal;
-  font-weight: 300;
-  src: url('../assets/fonts/Sans/IRANSansWeb_Light.eot');
-  src: url('../assets/fonts/Sans/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),
-    url('../assets/fonts/Sans/IRANSansWeb_Light.woff2') format('woff2'),
-    url('../assets/fonts/Sans/IRANSansWeb_Light.woff') format('woff'),
-    url('../assets/fonts/Sans/IRANSansWeb_Light.ttf') format('truetype');
+  font-display: swap;
 }
+
 @font-face {
-  font-family: yekanEN;
-  font-style: normal;
-  font-weight: normal;
-  src: url('../assets/fonts/YekanEn/iranyekanwebregular.eot');
-  src: url('../assets/fonts/YekanEn/iranyekanwebregular.eot?#iefix') format('embedded-opentype'),
-    url('../assets/fonts/YekanEn/iranyekanwebregular.woff') format('woff'),
-    url('../assets/fonts/YekanEn/iranyekanwebregular.ttf') format('truetype');
-}
-@font-face {
-  font-family: yekanENB;
-  font-style: normal;
-  font-weight: normal;
+  font-family: VazirmatnFaNumBold;
+  src: url('../assets/fonts/VazirFaNum/Vazirmatn-FD-ExtraBold.woff2') format('woff2');
   font-weight: 800;
-  src: url('../assets/fonts/YekanEn/iranyekanwebextrabold.eot');
-  src: url('../assets/fonts/YekanEn/iranyekanwebextrabold.eot?#iefix') format('embedded-opentype'),
-    url('../assets/fonts/YekanEn/iranyekanwebextrabold.woff') format('woff'),
-    url('../assets/fonts/YekanEn/iranyekanwebextrabold.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+.vazir-bold {
+  font-family: VazirmatnBold;
+}
+.fa-num-font {
+  font-family: VazirmatnFaNum;
+}
+.fa-num-font-bold {
+  font-family: VazirmatnFaNumBold;
 }
