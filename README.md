@@ -36,6 +36,7 @@ In this project, we added some configs and installed some necessary packages. th
   - Style Config
   - `jsconfig` file
   - SEO & PWA tags
+  - API cache system
   - create `constants`
   - Private route system
   - `lint-staged` config
@@ -100,9 +101,7 @@ In this project, we added some configs and installed some necessary packages. th
 - You can use `Vazir` font in this project. for change `EN` to `FA` number with font, use `fa-num-font` and `fa-num-font-bold` class. also you can use `vazir-bold` for bold type.
 - You can import file from `src` address like this:
 
-  <code>
-  import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';
-  </code>
+  `import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';`
 
 <br />
 
@@ -146,9 +145,10 @@ In this project, we added some configs and installed some necessary packages. th
 
 ### Project TODO
 
-- [x] usePageData
-- [x] cancel duplicate request
-- [ ] useApi
+- [x] useApi
 - [ ] storybook
+- [x] usePageData
+- [x] API cache system
+- [x] cancel duplicate request
 - [ ] Add API pattern Doc to MD file
 - [ ] Add usePageData & UseApi Doc to MD file
