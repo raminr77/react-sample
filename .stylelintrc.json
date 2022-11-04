@@ -7,6 +7,7 @@
     "rules": {
         "indentation": 2,
         "max-nesting-depth": 4,
+        "string-quotes": "single",
         "at-rule-no-unknown": null,
         "number-leading-zero": null,
         "color-no-invalid-hex": true,

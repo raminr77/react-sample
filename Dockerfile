@@ -5,11 +5,11 @@ FROM node:latest
 WORKDIR /app
 
 # Install App Dependencies
-COPY package.json ./
-RUN npm install --silent
+COPY ["package.json", "yarn.lock", "/app/"]
+RUN yarn
 
 # Add App
-COPY . .
+COPY [".", "/app"]
 
 # Start App
 CMD ["npm", "build"]

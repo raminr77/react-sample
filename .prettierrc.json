@@ -2,11 +2,15 @@
   "semi": true,
   "tabWidth": 2,
   "useTabs": false,
-  "printWidth": 100,
+  "printWidth": 90,
   "singleQuote": true,
   "jsxSelfClosing": true,
   "jsxSingleQuote": true,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "trailingComma": "none"
+  "requireConfig": false,
+  "trailingComma": "none",
+  "editor.formatOnSave": true,
+  "html.format.wrapLineLength": 80,
+  "html.format.wrapAttributes": "force-expand-multiline"
 }

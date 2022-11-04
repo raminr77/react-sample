@@ -32,10 +32,12 @@ In this project, we added some configs and installed some necessary packages. th
   - Atylelint
   - Dockerfile
   - `.env` file
+  - Commit lint
   - Redux Config
   - Style Config
-  - `jsconfig` file
   - SEO & PWA tags
+  - `jsconfig` file
+  - Folder structure
   - API cache system
   - create `constants`
   - Private route system
@@ -46,9 +48,9 @@ In this project, we added some configs and installed some necessary packages. th
   - Lock API request system
   - Cancel duplicate request
   - Reset default browser CSS
-  - Pre-Commit config (husky)
   - Scroll to the top when route change
   - Transform data system for API request
+  - Pre-Commit and Commit-Message config (husky)
 
 - ## Packages
 
@@ -145,10 +147,10 @@ In this project, we added some configs and installed some necessary packages. th
 
 ### Project TODO
 
-- [x] useApi
-- [ ] storybook
-- [x] usePageData
-- [x] API cache system
-- [x] cancel duplicate request
+- [ ] Scripts
+- [ ] Storybook
+- [ ] Test config
+- [ ] E2E test config
+- [ ] Folder Structure
 - [ ] Add API pattern Doc to MD file
 - [ ] Add usePageData & UseApi Doc to MD file
