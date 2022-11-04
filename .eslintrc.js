@@ -10,9 +10,12 @@ module.exports = {
         'eslint:recommended',
         'plugin:unicorn/all',
         'plugin:react/recommended',
+        'prettier/@typescript-eslint',
         'plugin:prettier/recommended',
-        'plugin:react-hooks/recommended'
+        'plugin:react-hooks/recommended',
+        'plugin:@typescript-eslint/recommended'
     ],
+    parser:  '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true
@@ -67,5 +70,10 @@ module.exports = {
             'ignorePackages',
             { 'js': 'never', 'jsx': 'never', 'ts': 'never', 'tsx': 'never' }
           ]
+    },
+    settings:  {
+        react:  {
+            version:  'detect'
+        }
     }
 };
