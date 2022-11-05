@@ -15,10 +15,8 @@ In this project, we added some configs and installed some necessary packages. th
 - [Packages](https://github.com/raminr77/react_sample#Packages)
 - [Hooks](https://github.com/raminr77/react_sample#Hooks)
 - [Tools (utils)](https://github.com/raminr77/react_sample#tools-utils)
-
 - [How To Run](https://github.com/raminr77/react_sample#how-to-run)
-- [Other Commands](https://github.com/raminr77/react_sample#other-commands)
-- [API Pattern Example](https://github.com/raminr77/react_sample#api-pattern-example)
+- [API Pattern](https://github.com/raminr77/react_sample#api-pattern)
 - [You Can Use In This Project](https://github.com/raminr77/react_sample#you-can-use-in-this-project)
 
 <br />
@@ -29,7 +27,7 @@ In this project, we added some configs and installed some necessary packages. th
 
   - Eslint
   - Prettier
-  - Atylelint
+  - Stylelint
   - Dockerfile
   - `.env` file
   - Commit lint
@@ -37,12 +35,13 @@ In this project, we added some configs and installed some necessary packages. th
   - Style Config
   - SEO & PWA tags
   - `jsconfig` file
+  - `tsconfig` file
   - Folder structure
   - API cache system
-  - create `constants`
   - Private route system
   - `lint-staged` config
-  - Edit `manigest.json`
+  - Custom `manigest.json`
+  - `constants` structure
   - First loading animation
   - API Pattern for request
   - Lock API request system
@@ -53,25 +52,33 @@ In this project, we added some configs and installed some necessary packages. th
   - Pre-Commit and Commit-Message config (husky)
 
 - ## Packages
-
+### Dependencies
+  - TypeScript
   - sass (for component module sass)
   - animate.css (for your animations)
+  - nookies (for working with cookies)
   - tailwindcss (for main style system)
   - lodash (for working easily with array)
   - axios (for API service and request system)
   - classnames (for merge ClassNames and module sass)
-  - nookies (for working with cookies like token system)
   - react-router-dom (for routing system in your project)
   - prop-types (for specify type in your JSX & component file)
   - react-toastify (for notify message to user in your project)
   - react-device-detect (for check devices and specify mobile type)
   - @reduxjs/toolkit & react-redux (for state management in your project)
-
+### DevDependencies
+  - husky
+  - eslint (+ plugins and configs)
+  - prettier (+ plugins and configs)
+  - stylelint
+  - lint-staged 
+  - eslint-config-airbnb
+  - commitlint + config-conventional
 - ## Hooks
 
-  - useApi (for in page requests)
+  - useApi (for requests)
+  - usePageData (for page requests)
   - useCopyToClipboard (for copy text)
-  - usePageData (for main page requests)
   - useOnScreen (for traking an element on screen)
 
 - ## Tools (utils)
@@ -88,7 +95,7 @@ In this project, we added some configs and installed some necessary packages. th
   - `redirect` and `attachObjectQueriesToUrl` functions
   - `truncate` and `shouldTruncate` functions for your texts
   - `isDemo`, `isProduction`, `isDevelopment`, `appVersion` and `appName` variables
-  - `faToEn`, `enToFa`, `arToFa`, `faPriceToEnNumber` and `formatPrice` functions for your numbers
+  - `faToEn`, `enToFa`, `arToFa`, `faPriceToEnNumber` and `formatPrice` functions for your numbers (persian language)
 
 <br />
 
@@ -107,7 +114,7 @@ In this project, we added some configs and installed some necessary packages. th
 
 <br />
 
-## API Pattern Example
+## API Pattern
 
 - Your API
 
@@ -130,10 +137,9 @@ In this project, we added some configs and installed some necessary packages. th
 - `npm install` or `yarn add`
 - Just Run: `npm start`
 - Run white style watching:
-  - Windows: `npm run dev:win`
-  - Linux or MaxOs: `npm run dev:linux`
-
-## Other Commands
+  - Windows: `npm run dev:windows`
+  - Linux or MaxOs: `npm run dev`
+### Other Commands
 
 - Test: `npm run test`
 - Build: `npm run build`
@@ -152,5 +158,6 @@ In this project, we added some configs and installed some necessary packages. th
 - [ ] Test config
 - [ ] E2E test config
 - [ ] Folder Structure
+- [ ] Convert js to ts
 - [ ] Add API pattern Doc to MD file
 - [ ] Add usePageData & UseApi Doc to MD file
