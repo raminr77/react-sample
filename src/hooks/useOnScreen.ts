@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 
-export function useOnScreen(options) {
-  const ref = useRef();
+interface ObserverOptions {
+  root: Element;
+  rootMargin: string;
+  thresholds: ReadonlyArray<number>;
+}
+
+export function useOnScreen(options: ObserverOptions) {
+  const reference = useRef();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    let current = ref.current;
+    const { current } = reference;
     const observer = new IntersectionObserver(([entry]) => {
       setVisible(entry.isIntersecting);
     }, options);
@@ -17,5 +23,5 @@ export function useOnScreen(options) {
     };
   }, []);
 
-  return [ref, visible];
+  return [reference, visible];
 }

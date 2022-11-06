@@ -1,23 +1,34 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
+import { noop } from 'lodash';
 import { sendLog } from 'services/log';
 import { useEffect, useState } from 'react';
 import {
+  hasAPICache,
   setAPICache,
   getAPICacheData,
-  checkAPICacheTime,
-  hasAPICache
+  checkAPICacheTime
 } from 'services/api/cacheSystem';
+
+interface Properties {
+  apiData: any;
+  apiMethod: any;
+  disabled: boolean;
+  expireTime: number;
+  dataCached: boolean;
+  onFinally: () => void;
+  onError: (error: string) => void;
+  onSuccess: (response: unknown) => void;
+}
 
 export const usePageData = ({
   apiMethod,
+  onError = noop,
+  onSuccess = noop,
+  onFinally = noop,
   apiData = null,
   disabled = false,
   dataCached = false,
-  onError = () => {},
-  onSuccess = () => {},
-  onFinally = () => {},
   expireTime = 600_000 // 10 min
-}) => {
+}: Properties) => {
   const [data, setData] = useState(null);
   const [pending, setPending] = useState(false);
   const CACHE_NAME = `CACHE_PAGE_REQUEST_[${apiMethod.url}]`;
@@ -35,22 +46,22 @@ export const usePageData = ({
     setPending(true);
     try {
       apiMethod(apiData)
-        .then((response) => {
+        .then((response: any) => {
           if (dataCached) {
             setAPICache({ name: CACHE_NAME, data: response });
           }
           setData(response);
         })
-        .catch((error) => {
+        .catch((error: any) => {
           onError?.(error);
         })
         .finally(() => {
           onFinally?.();
           setPending(false);
         });
-    } catch (error) {
+    } catch {
       setPending(false);
-      sendLog({ url: apiMethod.url, message: `Error: UsePageData - ${error}` });
+      sendLog({ url: apiMethod.url, message: 'Error: UsePageData' });
     }
   };
 

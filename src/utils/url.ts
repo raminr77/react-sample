@@ -17,13 +17,12 @@ export const attachObjectQueriesToUrl = (url = '/', object = {}, encode = false)
   return `${url}?${QS.stringify(object, { encode })}`;
 };
 
-export const redirect = ({ url, backUrl }) => {
+export const redirect = ({ url, backUrl }: { url: string; backUrl?: string }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigate = useNavigate();
   const finalUrl = !!backUrl
     ? attachObjectQueriesToUrl(url, { backUrl: backUrl || getCurrentUrl() })
     : url;
-  if (!finalUrl) return;
-  // eslint-disable-next-line consistent-return
-  return navigate(url);
+
+  return navigate(finalUrl);
 };

@@ -4,9 +4,9 @@ export const sendLog = ({
   message = 'Network Error',
   url = `[ PAGE ] ${window.location.href}`
 }: {
-  method: 'GET' | 'POST';
+  method?: 'GET' | 'POST';
   message: string;
-  url: string;
+  url?: string;
 }): void => {
   // save or send your log
   LOG_STACK.push(`${message} \n [${method}] ${url}`);

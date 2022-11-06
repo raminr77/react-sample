@@ -1,34 +1,45 @@
 import { REQUEST_TYPE } from 'constants/RequestType';
 import { get, post, CancelToken } from 'services/api';
 
-const REQUEST_LIST = {};
+type RequestList = {
+  [key: string]: number;
+};
+
+const REQUEST_LIST: RequestList = {};
 const MIN_TIME_FOR_DUPLICATE_REQUEST = 1000;
+
+interface Props {
+  url: string;
+  type: 'GET' | 'POST';
+  transformer: (data: unknown) => unknown;
+  inputTransformer: (data: unknown) => unknown;
+}
 
 export function apiRequestObject({
   url,
   transformer,
   inputTransformer,
   type = REQUEST_TYPE.GET
-}) {
+}: Props) {
   const source = CancelToken.source();
-  const apiCall = (data, options = {}) => {
+
+  const apiCall = (data: unknown, options = {}) => {
     // Cancel Duplicate Request
     const REQUEST_HASH = `[${type}][${url}][${JSON.stringify(data)}]`;
+
     if (!!REQUEST_LIST[REQUEST_HASH]) {
-      // eslint-disable-next-line unicorn/prefer-date-now
       const diffTime = new Date().getTime() - REQUEST_LIST[REQUEST_HASH];
       if (diffTime < MIN_TIME_FOR_DUPLICATE_REQUEST) {
         delete REQUEST_LIST[REQUEST_HASH];
         // eslint-disable-next-line no-throw-literal
         throw 'Request was cancelled';
       } else {
-        // eslint-disable-next-line unicorn/prefer-date-now
         REQUEST_LIST[REQUEST_HASH] = new Date().getTime();
       }
     } else {
-      // eslint-disable-next-line unicorn/prefer-date-now
       REQUEST_LIST[REQUEST_HASH] = new Date().getTime();
     }
+
     // start New Request
     const moderatedOptions = { ...options };
     const transformedData = inputTransformer ? inputTransformer(data) : data;
@@ -38,7 +49,7 @@ export function apiRequestObject({
     return new Promise((resolve, reject) => {
       try {
         // RESPONSE
-        const handleResponse = (response) => {
+        const handleResponse = (response: unknown) => {
           if (transformer) {
             resolve(transformer({ data: response }));
           }
@@ -71,6 +82,7 @@ export function apiRequestObject({
       }
     });
   };
+
   apiCall.cancel = () => {
     source.cancel('Request was cancelled');
   };
