@@ -1,12 +1,17 @@
-/* eslint-disable unicorn/no-unused-properties */
-import React, { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
 import { SNACKBAR_POSITIONS, SNACKBAR_TYPES } from 'constants/Snackbar';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
-const TOAST_COLOR_TYPES = {
+export type SnackBarType = 'info' | 'error' | 'warn' | 'success' | 'message';
+
+const TOAST_COLOR_TYPES: {
+  DARK: 'dark';
+  LIGHT: 'light';
+  COLORED: 'colored';
+} = {
   DARK: 'dark',
   LIGHT: 'light',
   COLORED: 'colored'
@@ -19,12 +24,27 @@ const TOAST_TRANSITION_TYPES = {
   BOUNCE: Bounce
 };
 
+interface SnackBarEvent {
+  detail: {
+    delay?: number;
+    message: string;
+    type?: SnackBarType;
+    icon?: null | ReactNode;
+    position?:
+      | 'top-left'
+      | 'top-right'
+      | 'top-center'
+      | 'bottom-right'
+      | 'bottom-center'
+      | 'bottom-left';
+  };
+}
+
 export function SnackbarWrapper() {
-  // eslint-disable-next-line unicorn/consistent-function-scoping, consistent-return
-  const createSnackBar = (event) => {
+  const createSnackBar = (event: SnackBarEvent) => {
     const {
+      icon,
       message,
-      icon = null,
       delay = 3000,
       type = SNACKBAR_TYPES.MESSAGE,
       position = SNACKBAR_POSITIONS.BOTTOM_CENTER
@@ -33,28 +53,30 @@ export function SnackbarWrapper() {
 
     if (type === SNACKBAR_TYPES.MESSAGE) {
       return toast(message, {
+        icon,
         toastId,
         position,
         autoClose: delay,
-        icon: () => icon,
         theme: TOAST_COLOR_TYPES.DARK,
         transition: TOAST_TRANSITION_TYPES.SLIDE
       });
     }
 
     toast[type]?.(message, {
+      icon,
       toastId,
       position,
       autoClose: delay,
-      icon: () => icon,
       theme: TOAST_COLOR_TYPES.COLORED,
       transition: TOAST_TRANSITION_TYPES.SLIDE
     });
   };
 
   useEffect(() => {
+    // @ts-ignore: Unreachable code error
     window.addEventListener('GenerateSnackbar', createSnackBar);
     return () => {
+      // @ts-ignore: Unreachable code error
       window.removeEventListener('GenerateSnackbar', createSnackBar);
     };
   }, []);
