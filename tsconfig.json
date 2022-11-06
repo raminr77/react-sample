@@ -26,23 +26,10 @@
         }
       }
     ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
-    "typeRoots": [
-      "src/types",
-      "node_modules/@types"
-    ]
+    "typeRoots": ["src/types", "node_modules/@types"]
   },
-  "include": [
-    "src",
-    "scripts"
-  ],
-  "exclude": [
-    "build",
-    "node_modules"
-  ]
+  "include": ["src", "scripts"],
+  "exclude": ["build", "node_modules"]
 }
