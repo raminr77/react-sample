@@ -10,19 +10,19 @@ const MAX_REQUEST_PER_SECOND = 20;
 
 let isAPILock = false;
 let requestPerSecondCount = 0;
-let prevAPICallTime = new Date().getTime();
+let previousAPICallTime = Date.now();
 
 const getDeviceType = () => (isMobile ? 'mobile' : 'desktop');
 
 const $axios = axios.create({
-  timeout: 40000,
+  timeout: 40_000,
   withCredentials: true,
   baseURL: process.env.REACT_APP_API_BASE_URL,
   headers: {
     Accept: 'application/json',
     'X-Web-Optimize-Response': 1,
     'X-Web-Client': getDeviceType(),
-    Authorization: 'token ' + TOKEN,
+    Authorization: `token ${TOKEN}`,
     'Content-Type': 'application/json'
   }
 });
@@ -39,15 +39,16 @@ const handleInterceptorsLockAPI = () => {
 $axios.interceptors.request.use((config) => {
   if (isAPILock) handleInterceptorsLockAPI();
 
-  const currentTime = new Date().getTime();
-  const diffTime = currentTime - prevAPICallTime;
+  const currentTime = Date.now();
+  const diffTime = currentTime - previousAPICallTime;
   const isInPreviousSecond = diffTime < 1000;
 
   if (isInPreviousSecond) {
+    // eslint-disable-next-line no-plusplus
     requestPerSecondCount++;
   } else {
     requestPerSecondCount = 0;
-    prevAPICallTime = currentTime;
+    previousAPICallTime = currentTime;
   }
 
   if (requestPerSecondCount > MAX_REQUEST_PER_SECOND) {
@@ -56,8 +57,8 @@ $axios.interceptors.request.use((config) => {
   }
 
   const newConfig = { ...config };
-  newConfig.paramsSerializer = (params) => {
-    return QS.stringify(params, {
+  newConfig.paramsSerializer = (parameters) => {
+    return QS.stringify(parameters, {
       arrayFormat: 'indices',
       encode: true
     });

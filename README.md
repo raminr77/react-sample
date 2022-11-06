@@ -52,28 +52,32 @@ In this project, we added some configs and installed some necessary packages. th
   - Pre-Commit and Commit-Message config (husky)
 
 - ## Packages
+
 ### Dependencies
-  - TypeScript
-  - sass (for component module sass)
-  - animate.css (for your animations)
-  - nookies (for working with cookies)
-  - tailwindcss (for main style system)
-  - lodash (for working easily with array)
-  - axios (for API service and request system)
-  - classnames (for merge ClassNames and module sass)
-  - react-router-dom (for routing system in your project)
-  - prop-types (for specify type in your JSX & component file)
-  - react-toastify (for notify message to user in your project)
-  - react-device-detect (for check devices and specify mobile type)
-  - @reduxjs/toolkit & react-redux (for state management in your project)
+
+- TypeScript
+- sass (for component module sass)
+- animate.css (for your animations)
+- nookies (for working with cookies)
+- tailwindcss (for main style system)
+- lodash (for working easily with array)
+- axios (for API service and request system)
+- classnames (for merge ClassNames and module sass)
+- react-router-dom (for routing system in your project)
+- prop-types (for specify type in your JSX & component file)
+- react-toastify (for notify message to user in your project)
+- react-device-detect (for check devices and specify mobile type)
+- @reduxjs/toolkit & react-redux (for state management in your project)
+
 ### DevDependencies
-  - husky
-  - eslint (+ plugins and configs)
-  - prettier (+ plugins and configs)
-  - stylelint
-  - lint-staged 
-  - eslint-config-airbnb
-  - commitlint + config-conventional
+
+- husky
+- eslint (+ plugins and configs)
+- prettier (+ plugins and configs)
+- stylelint
+- lint-staged
+- eslint-config-airbnb
+- commitlint + config-conventional
 - ## Hooks
 
   - useApi (for requests)
@@ -88,7 +92,7 @@ In this project, we added some configs and installed some necessary packages. th
   - URLs for share in social
   - `generateSnackbar` function
   - `apiRequestObject` for API pattern
-  - `removeUndefinedFromObj` function
+  - `removeUndefinedFromObject` function
   - `propsToClassName` for working with props
   - Log system (Empty function for your config)
   - `setCookie`, `getCookie` and `removeCookie` functions
@@ -139,6 +143,7 @@ In this project, we added some configs and installed some necessary packages. th
 - Run white style watching:
   - Windows: `npm run dev:windows`
   - Linux or MaxOs: `npm run dev`
+
 ### Other Commands
 
 - Test: `npm run test`

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { REDUCER_NAMES } from 'constants/ReducerNames';
+import { REDUCER_NAMES } from 'constants/reducerNames';
 
 const initialState = {
   isAuthenticated: false // for private route system
@@ -10,6 +10,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userLogoutAction: (state) => {
+      // eslint-disable-next-line no-param-reassign
       state.isAuthenticated = false;
     }
   }

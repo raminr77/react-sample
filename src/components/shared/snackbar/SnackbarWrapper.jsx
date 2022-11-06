@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-unused-properties */
 import React, { useEffect } from 'react';
 import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
@@ -18,15 +19,16 @@ const TOAST_TRANSITION_TYPES = {
   BOUNCE: Bounce
 };
 
-export const SnackbarWrapper = () => {
-  const createSnackBar = (e) => {
+export function SnackbarWrapper() {
+  // eslint-disable-next-line unicorn/consistent-function-scoping, consistent-return
+  const createSnackBar = (event) => {
     const {
       message,
       icon = null,
       delay = 3000,
       type = SNACKBAR_TYPES.MESSAGE,
       position = SNACKBAR_POSITIONS.BOTTOM_CENTER
-    } = e.detail;
+    } = event.detail;
     const toastId = type + message;
 
     if (type === SNACKBAR_TYPES.MESSAGE) {
@@ -68,4 +70,4 @@ export const SnackbarWrapper = () => {
       pauseOnFocusLoss={false}
     />
   );
-};
+}

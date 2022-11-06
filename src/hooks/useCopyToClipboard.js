@@ -6,7 +6,8 @@ export const useCopyToClipboard = (
 ) => {
   const [status, setStatus] = useState('');
   const copy = (text, useOldSchoolMethod = false) => {
-    const isNavigatorAvailable = !!navigator?.permissions && !!navigator?.clipboard?.writeText;
+    const isNavigatorAvailable =
+      !!navigator?.permissions && !!navigator?.clipboard?.writeText;
     if (!isNavigatorAvailable || useOldSchoolMethod) {
       nativeDevicesCopy(text);
       return;

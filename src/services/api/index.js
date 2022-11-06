@@ -7,31 +7,40 @@ import { SNACKBAR_TYPES } from 'constants/Snackbar';
 import { userLogoutAction } from 'store/user/userSlice';
 import { generateSnackbar } from 'utils/generateSnackbar';
 import { serviceGet, servicePost } from 'services/api/initialize';
-import { INDEX_PAGE_ROUTE, NOT_FOUND_ROUTE, USER_LOGIN_ROUTE } from 'routes/RedirectRoutes';
+import {
+  INDEX_PAGE_ROUTE,
+  NOT_FOUND_ROUTE,
+  USER_LOGIN_ROUTE
+} from 'routes/RedirectRoutes';
 
 function handleResponse({ response, reject, resolve }) {
   const status = response?.status || response.data?.status || 500;
   const message = response.data?.message || '';
 
   switch (status) {
-    case 200:
+    case 200: {
       resolve(response?.data);
       break;
-    case 301:
+    }
+    case 301: {
       redirect(response?.data?.url || INDEX_PAGE_ROUTE);
       reject(response);
       break;
-    case 401:
+    }
+    case 401: {
       store.dispatch(userLogoutAction());
       redirect(USER_LOGIN_ROUTE);
       reject(response);
       break;
-    case 404:
+    }
+    case 404: {
       redirect(NOT_FOUND_ROUTE);
       reject(response);
       break;
-    default:
+    }
+    default: {
       reject(response);
+    }
   }
 
   if (status >= 300 && message) {
@@ -66,6 +75,5 @@ function post({ url, data, config }) {
   });
 }
 
-const CancelToken = axios.CancelToken;
-
+const { CancelToken } = axios;
 export { get, post, CancelToken };

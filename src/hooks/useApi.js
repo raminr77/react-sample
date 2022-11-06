@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useMemo, useState } from 'react';
 
 import { redirect } from 'utils/url';
+import { noop } from 'lodash/noop';
 import { userSelectors } from 'store/user/userSelectors';
 import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';
 import {
@@ -14,15 +15,15 @@ import {
 export const useAPI = ({
   apiMethod,
   isPrivate = false,
-  onError = () => {},
+  onError = noop,
   dataCached = false,
-  onSuccess = () => {},
-  onFinally = () => {},
+  onSuccess = noop,
+  onFinally = noop,
   requestOnLoad = false,
   requestDataOnLoad = {},
   dependenciesOnLoad = [],
-  expireTime = 600000, // 10 min
-  onUploadProgressCallback = () => {}
+  expireTime = 600_000, // 10 min
+  onUploadProgressCallback = noop
 }) => {
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -37,6 +38,7 @@ export const useAPI = ({
   const startLoading = () => setLoading(true);
 
   const request = (apiData) => {
+    // eslint-disable-next-line no-param-reassign
     apiData = apiData ?? requestDataOnLoad;
     return new Promise((resolve, reject) => {
       if (
@@ -85,7 +87,10 @@ export const useAPI = ({
     });
   };
 
-  const memoizedDependenciesOnLoad = useMemo(() => [...dependenciesOnLoad], [dependenciesOnLoad]);
+  const memoizedDependenciesOnLoad = useMemo(
+    () => [...dependenciesOnLoad],
+    [dependenciesOnLoad]
+  );
 
   useEffect(() => {
     if (requestOnLoad) {

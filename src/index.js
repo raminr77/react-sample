@@ -10,8 +10,9 @@ import { SnackbarWrapper } from 'components/shared/snackbar/SnackbarWrapper';
 import 'animate.css';
 import 'styles/index.scss';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.querySelector('#root'));
 root.render(
+  // eslint-disable-next-line react/jsx-filename-extension
   <React.StrictMode>
     <Provider store={store}>
       <SnackbarWrapper />

@@ -1,9 +1,10 @@
+/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import { useAPI } from 'hooks/useApi';
 import { usePageData } from 'hooks/usePageData';
 import { getIndexPageData } from 'api/indexPage';
 
-export const IndexPage = () => {
+export function IndexPage() {
   const [data, setData] = useState([]);
   const [showMore, setShowMore] = useState(false);
   // usePageData Example
@@ -34,25 +35,38 @@ export const IndexPage = () => {
 
   return (
     <div dir='ltr' className='flex flex-col items-center'>
-      <h1 className='font-extrabold text-3xl my-5 animate__animated animate__bounce'>Index Page</h1>
+      <h1 className='font-extrabold text-3xl my-5 animate__animated animate__bounce'>
+        Index Page
+      </h1>
 
       {/* For reCall & call API */}
       <div className='flex items-center gap-x-4'>
-        <button className='bg-green-600 text-gray-50 px-3 py-2 rounded-md' onClick={reload}>
+        <button
+          className='bg-green-600 text-gray-50 px-3 py-2 rounded-md'
+          onClick={reload}
+        >
           Load Request API (albumId = 1)
         </button>
-        <button className='bg-cyan-600 text-gray-50 px-3 py-2 rounded-md' onClick={apiRequest}>
+        <button
+          className='bg-cyan-600 text-gray-50 px-3 py-2 rounded-md'
+          onClick={apiRequest}
+        >
           Other API Request (albumId = 2)
         </button>
       </div>
 
-      {pending && <div className='w-full my-4 text-center mt-9 text-cyan-700'>LOADING ...</div>}
+      {pending && (
+        <div className='w-full my-4 text-center mt-9 text-cyan-700'>LOADING ...</div>
+      )}
 
       <ul className='mx-auto max-w-xl mt-5'>
         {Array.isArray(data) &&
           data?.slice(0, showMore ? data?.length : 3)?.map((item, index) => (
-            <li key={index} className='flex items-start mb-4 bg-gray-100 p-5 rounded-lg'>
-              <img className='mr-4 rounded' width={120} src={item.url} />
+            <li
+              key={item.url}
+              className='flex items-start mb-4 bg-gray-100 p-5 rounded-lg'
+            >
+              <img className='mr-4 rounded' width={120} src={item.url} alt={item.title} />
               <div className='pt-4'>
                 <h3 className='mb-1 font-bold'>
                   {index + 1} - {item.title}
@@ -63,7 +77,9 @@ export const IndexPage = () => {
           ))}
       </ul>
 
-      {loading && <div className='w-full my-4 text-center mt-9 text-cyan-700'>LOADING ...</div>}
+      {loading && (
+        <div className='w-full my-4 text-center mt-9 text-cyan-700'>LOADING ...</div>
+      )}
 
       {!showMore && data?.length > 0 && (
         <button
@@ -75,4 +91,4 @@ export const IndexPage = () => {
       )}
     </div>
   );
-};
+}

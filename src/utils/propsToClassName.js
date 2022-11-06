@@ -1,3 +1,4 @@
+// eslint-disable-next-line unicorn/prevent-abbreviations, import/no-unresolved
 import { isString, isTruthy, isFn, isObject } from '.';
 
 export const specialKeys = {
@@ -11,20 +12,22 @@ export const specialKeys = {
  * @param result
  */
 
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export function propsToClassName(classes, props, result = new Set()) {
   result.add(props.className ?? '');
 
   for (const [variation, value = {}] of Object.entries(classes)) {
     if (isString(value) && variation === specialKeys.$all) {
       result.add(value);
+      // eslint-disable-next-line no-continue
       continue;
     }
 
-    const propValue = props[variation] ?? false;
-    const propValueStr = String(propValue);
+    const propertyValue = props[variation] ?? false;
+    const propertyValueString = String(propertyValue);
 
     if (isString(value)) {
-      if (isTruthy(propValue)) {
+      if (isTruthy(propertyValue)) {
         result.add(value);
       }
       //
@@ -32,14 +35,14 @@ export function propsToClassName(classes, props, result = new Set()) {
       const returnedValue = value(props);
       result.add(isString(returnedValue) ? returnedValue : '');
       //
-    } else if (isObject(value) && isString(value[propValueStr])) {
+    } else if (isObject(value) && isString(value[propertyValueString])) {
       result.add(value[specialKeys.$all] ?? '');
-      result.add(value[propValueStr]);
+      result.add(value[propertyValueString]);
       //
-    } else if (isObject(value) && isObject(value[propValueStr])) {
-      const obj = value[propValueStr];
+    } else if (isObject(value) && isObject(value[propertyValueString])) {
+      const object = value[propertyValueString];
       result.add(value.$all ?? '');
-      propsToClassName(obj, props, result);
+      propsToClassName(object, props, result);
       //
     } else if (isObject(value)) {
       result.add(value.$all ?? '');

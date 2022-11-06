@@ -4,20 +4,29 @@ import { get, post, CancelToken } from 'services/api';
 const REQUEST_LIST = {};
 const MIN_TIME_FOR_DUPLICATE_REQUEST = 1000;
 
-export function apiRequestObject({ url, transformer, inputTransformer, type = REQUEST_TYPE.GET }) {
+export function apiRequestObject({
+  url,
+  transformer,
+  inputTransformer,
+  type = REQUEST_TYPE.GET
+}) {
   const source = CancelToken.source();
   const apiCall = (data, options = {}) => {
     // Cancel Duplicate Request
     const REQUEST_HASH = `[${type}][${url}][${JSON.stringify(data)}]`;
     if (!!REQUEST_LIST[REQUEST_HASH]) {
+      // eslint-disable-next-line unicorn/prefer-date-now
       const diffTime = new Date().getTime() - REQUEST_LIST[REQUEST_HASH];
       if (diffTime < MIN_TIME_FOR_DUPLICATE_REQUEST) {
         delete REQUEST_LIST[REQUEST_HASH];
+        // eslint-disable-next-line no-throw-literal
         throw 'Request was cancelled';
       } else {
+        // eslint-disable-next-line unicorn/prefer-date-now
         REQUEST_LIST[REQUEST_HASH] = new Date().getTime();
       }
     } else {
+      // eslint-disable-next-line unicorn/prefer-date-now
       REQUEST_LIST[REQUEST_HASH] = new Date().getTime();
     }
     // start New Request

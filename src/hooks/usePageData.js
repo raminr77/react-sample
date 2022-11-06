@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { sendLog } from 'services/log';
 import { useEffect, useState } from 'react';
 import {
@@ -15,7 +16,7 @@ export const usePageData = ({
   onError = () => {},
   onSuccess = () => {},
   onFinally = () => {},
-  expireTime = 600000 // 10 min
+  expireTime = 600_000 // 10 min
 }) => {
   const [data, setData] = useState(null);
   const [pending, setPending] = useState(false);
@@ -40,16 +41,16 @@ export const usePageData = ({
           }
           setData(response);
         })
-        .catch((err) => {
-          onError?.(err);
+        .catch((error) => {
+          onError?.(error);
         })
         .finally(() => {
           onFinally?.();
           setPending(false);
         });
-    } catch (e) {
+    } catch (error) {
       setPending(false);
-      sendLog({ url: apiMethod.url, message: 'Error: UsePageData' });
+      sendLog({ url: apiMethod.url, message: `Error: UsePageData - ${error}` });
     }
   };
 

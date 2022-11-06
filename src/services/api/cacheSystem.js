@@ -1,8 +1,8 @@
 const CACHE_STORE = {}; // you can save redux or ...
 
-export const checkAPICacheTime = ({ name, expireTime = 600000 }) => {
+export const checkAPICacheTime = ({ name, expireTime = 600_000 }) => {
   const cacheTime = CACHE_STORE[name]?.expireTime || 0;
-  const diffTime = new Date().getTime() - expireTime;
+  const diffTime = Date.now() - expireTime;
   if (diffTime < cacheTime) {
     return true;
   }
@@ -19,5 +19,5 @@ export const getAPICacheData = (name) => {
 };
 
 export const setAPICache = ({ name, data }) => {
-  CACHE_STORE[name] = { data, expireTime: new Date().getTime() };
+  CACHE_STORE[name] = { data, expireTime: Date.now() };
 };
