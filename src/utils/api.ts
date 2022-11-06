@@ -8,7 +8,7 @@ type RequestList = {
 const REQUEST_LIST: RequestList = {};
 const MIN_TIME_FOR_DUPLICATE_REQUEST = 1000;
 
-interface Props {
+interface Properties {
   url: string;
   type: 'GET' | 'POST';
   transformer: (data: any) => unknown;
@@ -20,7 +20,7 @@ export function apiRequestObject({
   transformer,
   inputTransformer,
   type = REQUEST_TYPE.GET
-}: Props) {
+}: Properties) {
   const source = CancelToken.source();
 
   const apiCall = (data: unknown, options = {}) => {
@@ -28,16 +28,16 @@ export function apiRequestObject({
     const REQUEST_HASH = `[${type}][${url}][${JSON.stringify(data)}]`;
 
     if (!!REQUEST_LIST[REQUEST_HASH]) {
-      const diffTime = new Date().getTime() - REQUEST_LIST[REQUEST_HASH];
+      const diffTime = Date.now() - REQUEST_LIST[REQUEST_HASH];
       if (diffTime < MIN_TIME_FOR_DUPLICATE_REQUEST) {
         delete REQUEST_LIST[REQUEST_HASH];
         // eslint-disable-next-line no-throw-literal
         throw 'Request was cancelled';
       } else {
-        REQUEST_LIST[REQUEST_HASH] = new Date().getTime();
+        REQUEST_LIST[REQUEST_HASH] = Date.now();
       }
     } else {
-      REQUEST_LIST[REQUEST_HASH] = new Date().getTime();
+      REQUEST_LIST[REQUEST_HASH] = Date.now();
     }
 
     // start New Request

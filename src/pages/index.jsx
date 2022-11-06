@@ -18,15 +18,15 @@ export function IndexPage() {
       albumId: 1,
       name: 'ramin' // example: remove on inputTransformer
     },
-    onSuccess: (response) => setData(response),
-    onError: (error) => console.log('PAGE ERROR:', error)
+    onSuccess: (response) => setData(response)
+    // onError: (error) => console.log('PAGE ERROR:', error)
   });
 
   // useAPI Example
   const { request, pending: loading } = useAPI({
     apiMethod: getIndexPageData,
     requestDataOnLoad: { albumId: 2 },
-    onError: (error) => console.log('API ERROR:', error),
+    // onError: (error) => console.log('API ERROR:', error),
     onSuccess: (response) => setData([...data, ...response])
   });
 
