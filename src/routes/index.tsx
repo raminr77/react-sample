@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
 import {
   BrowserRouter as Router,
   Routes as Switch,
@@ -15,15 +13,19 @@ import { NOT_FOUND_ROUTE } from 'routes/RedirectRoutes';
 
 export function Routes() {
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <Router>
       <ScrollToTop />
       <Switch>
-        {PAGE_ROUTES.map((routeData) =>
-          routeData.isPrivate || routeData.deactivate ? (
-            <PrivateRoute key={routeData.id} {...routeData} />
+        {PAGE_ROUTES.map(({ id, isPrivate, deactivate, path, element }) =>
+          isPrivate || deactivate ? (
+            <PrivateRoute
+              key={id}
+              path={path}
+              element={element}
+              deactivate={deactivate}
+            />
           ) : (
-            <Route key={routeData.id} {...routeData} />
+            <Route key={id} path={path} element={element} />
           )
         )}
         <Route path={NOT_FOUND_ROUTE} element={<NotFoundPage />} />

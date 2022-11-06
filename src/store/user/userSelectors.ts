@@ -1,7 +1,7 @@
 import { createDraftSafeSelector } from '@reduxjs/toolkit';
 
 const userInfo = createDraftSafeSelector(
-  (state) => state.USER,
+  (state: { USER: { isAuthenticated: boolean } }) => state.USER,
   (state) => ({
     ...state
   })

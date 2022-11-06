@@ -7,7 +7,6 @@ import { IndexPage } from 'pages';
 export const PAGE_ROUTES = [
   {
     id: 1,
-    exact: true,
     isPrivate: false,
     deactivate: false,
     path: INDEX_PAGE_ROUTE,
