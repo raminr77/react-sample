@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import { store } from 'store';
 import { redirect } from 'utils/url';
@@ -13,7 +13,15 @@ import {
   USER_LOGIN_ROUTE
 } from 'routes/RedirectRoutes';
 
-function handleResponse({ response, reject, resolve }) {
+function handleResponse({
+  response,
+  reject,
+  resolve
+}: {
+  response: any;
+  reject: (result: any) => void;
+  resolve: (result: any) => void;
+}) {
   const status = response?.status || response.data?.status || 500;
   const message = response.data?.message || '';
 
@@ -29,12 +37,12 @@ function handleResponse({ response, reject, resolve }) {
     }
     case 401: {
       store.dispatch(userLogoutAction());
-      redirect(USER_LOGIN_ROUTE);
+      redirect({ url: USER_LOGIN_ROUTE });
       reject(response);
       break;
     }
     case 404: {
-      redirect(NOT_FOUND_ROUTE);
+      redirect({ url: NOT_FOUND_ROUTE });
       reject(response);
       break;
     }
@@ -49,27 +57,35 @@ function handleResponse({ response, reject, resolve }) {
   }
 }
 
-function get({ url, config }) {
+function get({ url, config }: { url: string; config?: AxiosRequestConfig }) {
   return new Promise((resolve, reject) => {
     serviceGet(url, config)
       .then((response) => {
         handleResponse({ response, reject, resolve });
       })
       .catch((error) => {
-        sendLog({ url, method: 'GET' });
+        sendLog({ url, method: 'GET', message: 'GET Request Is Failed.' });
         reject(error);
       });
   });
 }
 
-function post({ url, data, config }) {
+function post({
+  url,
+  data,
+  config
+}: {
+  url: string;
+  data?: unknown;
+  config?: AxiosRequestConfig;
+}) {
   return new Promise((resolve, reject) => {
     servicePost(url, data, config)
       .then((response) => {
         handleResponse({ response, reject, resolve });
       })
       .catch((error) => {
-        sendLog({ url, method: 'POST' });
+        sendLog({ url, method: 'POST', message: 'POST Request Is Failed.' });
         reject(error);
       });
   });

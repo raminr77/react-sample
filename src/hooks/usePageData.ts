@@ -9,14 +9,14 @@ import {
 } from 'services/api/cacheSystem';
 
 interface Properties {
-  apiData: any;
+  apiData?: any;
   apiMethod: any;
-  disabled: boolean;
-  expireTime: number;
-  dataCached: boolean;
-  onFinally: () => void;
-  onError: (error: string) => void;
-  onSuccess: (response: unknown) => void;
+  disabled?: boolean;
+  expireTime?: number;
+  dataCached?: boolean;
+  onFinally?: () => void;
+  onError?: (error: string) => void;
+  onSuccess?: (response: any) => void;
 }
 
 export const usePageData = ({

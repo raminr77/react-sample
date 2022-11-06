@@ -14,16 +14,16 @@ import {
 
 interface Properties {
   apiMethod: any;
-  expireTime: number;
-  isPrivate: boolean;
-  dataCached: boolean;
-  onFinally: () => void;
-  requestOnLoad: boolean;
-  requestDataOnLoad: unknown;
-  dependenciesOnLoad: unknown[];
-  onError: (error: string) => void;
-  onSuccess: (response: unknown) => void;
-  onUploadProgressCallback: (response: unknown) => void;
+  expireTime?: number;
+  isPrivate?: boolean;
+  dataCached?: boolean;
+  onFinally?: () => void;
+  requestOnLoad?: boolean;
+  requestDataOnLoad?: unknown;
+  dependenciesOnLoad?: unknown[];
+  onError?: (error: string) => void;
+  onSuccess?: (response: any) => void;
+  onUploadProgressCallback?: (response: any) => void;
 }
 
 export const useAPI = ({
@@ -51,7 +51,7 @@ export const useAPI = ({
   const endLoading = () => setLoading(false);
   const startLoading = () => setLoading(true);
 
-  const request = (apiData: unknown) => {
+  const request = (apiData?: any) => {
     // eslint-disable-next-line no-param-reassign
     apiData = apiData ?? requestDataOnLoad;
     return new Promise((resolve, reject) => {

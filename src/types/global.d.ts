@@ -1,17 +1,37 @@
-import { MouseEvent, DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from 'react';
+import {
+  ReactNode,
+  MouseEvent,
+  HTMLAttributes,
+  DetailedHTMLProps,
+  PropsWithChildren
+} from 'react';
 
 export {};
 
 declare global {
   type ID = string | number;
+  type SnackBarType = 'info' | 'error' | 'warn' | 'success' | 'message';
 
-  interface CommonCompnentProps {
+  interface CommonCompnentProperties {
     className?: string;
     style?: CSSProperties;
   }
 
-  interface CommonCompnentPropsWithChildren
-    extends PropsWithChildren<CommonCompnentProps> {}
+  interface SnackBarEvent {
+    delay?: number;
+    message: string;
+    type?: SnackBarType;
+    icon?: null | ReactNode;
+    position?:
+      | 'top-left'
+      | 'top-right'
+      | 'top-center'
+      | 'bottom-right'
+      | 'bottom-center'
+      | 'bottom-left';
+  }
+
+  type CommonCompnentPropertiesWithChildren = PropsWithChildren<CommonCompnentProperties>;
 
   type HEX = `#${string}`;
   type RGB = `rgb(${number}, ${number}, ${number})`;
@@ -22,8 +42,10 @@ declare global {
     event: MouseEvent<Element>
   ) => void;
 
-  interface HTMLElementAttributes<T extends HTMLElement>
-    extends DetailedHTMLProps<HTMLAttributes<T>, T> {}
+  type HTMLElementAttributes<T extends HTMLElement> = DetailedHTMLProps<
+    HTMLAttributes<T>,
+    T
+  >;
 
   type VoidFunction = () => void;
 }

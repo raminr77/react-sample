@@ -1,4 +1,4 @@
-export function generateSnackbar(options) {
+export function generateSnackbar(options: SnackBarEvent) {
   if (typeof CustomEvent === 'undefined') {
     return;
   }

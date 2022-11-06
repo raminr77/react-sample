@@ -1,12 +1,10 @@
 /* eslint-disable unicorn/no-unused-properties, @typescript-eslint/ban-ts-comment */
-import { ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
 import { SNACKBAR_POSITIONS, SNACKBAR_TYPES } from 'constants/Snackbar';
 
 import 'react-toastify/dist/ReactToastify.min.css';
-
-export type SnackBarType = 'info' | 'error' | 'warn' | 'success' | 'message';
 
 const TOAST_COLOR_TYPES: {
   DARK: 'dark';
@@ -25,25 +23,13 @@ const TOAST_TRANSITION_TYPES = {
   BOUNCE: Bounce
 };
 
-interface SnackBarEvent {
-  detail: {
-    delay?: number;
-    message: string;
-    type?: SnackBarType;
-    icon?: null | ReactNode;
-    position?:
-      | 'top-left'
-      | 'top-right'
-      | 'top-center'
-      | 'bottom-right'
-      | 'bottom-center'
-      | 'bottom-left';
-  };
+interface SnackBarDetail {
+  detail: SnackBarEvent;
 }
 
 export function SnackbarWrapper() {
   // eslint-disable-next-line unicorn/consistent-function-scoping, consistent-return
-  const createSnackBar = (event: SnackBarEvent) => {
+  const createSnackBar = (event: SnackBarDetail) => {
     const {
       icon,
       message,

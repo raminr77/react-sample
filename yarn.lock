@@ -7379,13 +7379,6 @@
   "resolved" "https://registry.npmjs.org/node-releases/-/node-releases-2.0.6.tgz"
   "version" "2.0.6"
 
-"nookies@^2.5.2":
-  "integrity" "sha512-x0TRSaosAEonNKyCrShoUaJ5rrT5KHRNZ5DwPCuizjgrnkpE5DRf3VL7AyyQin4htict92X1EQ7ejDbaHDVdYA=="
-  "resolved" "https://registry.npmjs.org/nookies/-/nookies-2.5.2.tgz"
-  "version" "2.5.2"
-  dependencies:
-    "cookie" "^0.4.1"
-    "set-cookie-parser" "^2.4.6"
 
 "normalize-package-data@^2.5.0":
   "integrity" "sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA=="

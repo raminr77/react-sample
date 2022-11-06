@@ -27,7 +27,7 @@ const $axios = axios.create({
   }
 });
 
-function onError(error) {
+function onError(error: any) {
   if (!axios.isCancel(error)) generateSnackbar({ message: CONNECTION_ERROR });
   return Promise.reject(error);
 }

@@ -58,7 +58,6 @@ In this project, we added some configs and installed some necessary packages. th
 - TypeScript
 - sass (for component module sass)
 - animate.css (for your animations)
-- nookies (for working with cookies)
 - tailwindcss (for main style system)
 - lodash (for working easily with array)
 - axios (for API service and request system)
@@ -93,9 +92,7 @@ In this project, we added some configs and installed some necessary packages. th
   - `generateSnackbar` function
   - `apiRequestObject` for API pattern
   - `removeUndefinedFromObject` function
-  - `propsToClassName` for working with props
   - Log system (Empty function for your config)
-  - `setCookie`, `getCookie` and `removeCookie` functions
   - `redirect` and `attachObjectQueriesToUrl` functions
   - `truncate` and `shouldTruncate` functions for your texts
   - `isDemo`, `isProduction`, `isDevelopment`, `appVersion` and `appName` variables

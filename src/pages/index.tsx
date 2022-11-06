@@ -27,7 +27,7 @@ export function IndexPage() {
     apiMethod: getIndexPageData,
     requestDataOnLoad: { albumId: 2 },
     // onError: (error) => console.log('API ERROR:', error),
-    onSuccess: (response) => setData([...data, ...response])
+    onSuccess: (response: []) => setData([...data, ...response])
   });
 
   const apiRequest = () => request();
@@ -61,7 +61,7 @@ export function IndexPage() {
 
       <ul className='mx-auto max-w-xl mt-5'>
         {Array.isArray(data) &&
-          data?.slice(0, showMore ? data?.length : 3)?.map((item, index) => (
+          data?.slice(0, showMore ? data?.length : 3)?.map((item: any, index) => (
             <li
               key={item.url}
               className='flex items-start mb-4 bg-gray-100 p-5 rounded-lg'
