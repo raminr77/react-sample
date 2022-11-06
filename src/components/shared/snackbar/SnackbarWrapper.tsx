@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-unused-properties, @typescript-eslint/ban-ts-comment */
 import { ReactNode, useEffect } from 'react';
 import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
@@ -13,8 +14,8 @@ const TOAST_COLOR_TYPES: {
   COLORED: 'colored';
 } = {
   DARK: 'dark',
-  LIGHT: 'light',
-  COLORED: 'colored'
+  COLORED: 'colored',
+  LIGHT: 'light'
 };
 
 const TOAST_TRANSITION_TYPES = {
@@ -41,6 +42,7 @@ interface SnackBarEvent {
 }
 
 export function SnackbarWrapper() {
+  // eslint-disable-next-line unicorn/consistent-function-scoping, consistent-return
   const createSnackBar = (event: SnackBarEvent) => {
     const {
       icon,

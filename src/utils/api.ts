@@ -11,8 +11,8 @@ const MIN_TIME_FOR_DUPLICATE_REQUEST = 1000;
 interface Props {
   url: string;
   type: 'GET' | 'POST';
-  transformer: (data: unknown) => unknown;
-  inputTransformer: (data: unknown) => unknown;
+  transformer: (data: any) => unknown;
+  inputTransformer: (data: any) => unknown;
 }
 
 export function apiRequestObject({
