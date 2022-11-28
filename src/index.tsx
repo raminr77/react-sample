@@ -11,8 +11,11 @@ import 'animate.css';
 import 'styles/index.scss';
 
 const rootElement = document.querySelector('#root');
+
 if (!rootElement) throw new Error('Failed to find the root element');
+
 const root = ReactDOM.createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -21,4 +24,5 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
 reportWebVitals();
