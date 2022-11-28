@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
-import { SNACKBAR_POSITIONS, SNACKBAR_TYPES } from 'constants/Snackbar';
+import { SNACKBAR_POSITIONS, SNACKBAR_TYPES } from 'constants/snackbar';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -40,7 +40,7 @@ export function SnackbarWrapper() {
     const toastId = type + message;
 
     if (type === SNACKBAR_TYPES.MESSAGE) {
-      return toast(message, {
+      toast(message, {
         icon,
         toastId,
         position,
@@ -48,6 +48,7 @@ export function SnackbarWrapper() {
         theme: TOAST_COLOR_TYPES.DARK,
         transition: TOAST_TRANSITION_TYPES.SLIDE
       });
+      return;
     }
 
     toast[type]?.(message, {

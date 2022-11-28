@@ -3,8 +3,8 @@ import { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Navigate } from 'react-router-dom';
 
-import { userSelectors } from 'store/user/userSelectors';
-import { NOT_FOUND_ROUTE, USER_LOGIN_ROUTE } from 'routes/RedirectRoutes';
+import { userSelectors } from 'store/user/user-selectors';
+import { NOT_FOUND_ROUTE, USER_LOGIN_ROUTE } from 'routes/redirect-routes';
 
 interface Properties {
   deactivate: boolean;

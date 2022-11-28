@@ -1,5 +1,5 @@
-import { REQUEST_TYPE } from 'constants/RequestType';
 import { get, post, CancelToken } from 'services/api';
+import { REQUEST_TYPES } from 'constants/request-types';
 
 type RequestList = {
   [key: string]: number;
@@ -19,7 +19,7 @@ export function apiRequestObject({
   url,
   transformer,
   inputTransformer,
-  type = REQUEST_TYPE.GET
+  type = REQUEST_TYPES.GET
 }: Properties) {
   const source = CancelToken.source();
 
@@ -56,7 +56,7 @@ export function apiRequestObject({
           resolve(response);
         };
         // GET
-        if (type === REQUEST_TYPE.GET) {
+        if (type === REQUEST_TYPES.GET) {
           get({
             url,
             config: {
@@ -67,7 +67,7 @@ export function apiRequestObject({
           }).then(handleResponse);
         }
         // POST
-        if (type === REQUEST_TYPE.POST) {
+        if (type === REQUEST_TYPES.POST) {
           post({
             url,
             data: modifiedData,

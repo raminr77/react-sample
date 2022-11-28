@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useAPI } from 'hooks/useApi';
 import { usePageData } from 'hooks/usePageData';
-import { getIndexPageData } from 'api/indexPage/get-index-page-data';
+import { getIndexPageData } from 'api/index-page/get-index-page-data';
 
 export function IndexPage() {
   const [data, setData] = useState([]);

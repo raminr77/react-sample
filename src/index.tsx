@@ -5,7 +5,7 @@ import { reportWebVitals } from 'reportWebVitals';
 
 import { store } from 'store';
 import { Routes } from 'routes';
-import { SnackbarWrapper } from 'components/shared/snackbar/SnackbarWrapper';
+import { SnackbarWrapper } from 'components/shared/snackbar-wrapper';
 
 import 'animate.css';
 import 'styles/index.scss';

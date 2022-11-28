@@ -3,14 +3,14 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { noop } from 'lodash';
 import { redirect } from 'utils/url';
-import { userSelectors } from 'store/user/userSelectors';
-import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';
+import { userSelectors } from 'store/user/user-selectors';
+import { INDEX_PAGE_ROUTE } from 'routes/redirect-routes';
 import {
   hasAPICache,
   setAPICache,
   getAPICacheData,
   checkAPICacheTime
-} from 'services/api/cacheSystem';
+} from 'services/api/cache-system';
 
 interface Properties {
   apiMethod: any;

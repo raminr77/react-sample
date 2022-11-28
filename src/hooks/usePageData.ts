@@ -6,7 +6,7 @@ import {
   setAPICache,
   getAPICacheData,
   checkAPICacheTime
-} from 'services/api/cacheSystem';
+} from 'services/api/cache-system';
 
 interface Properties {
   apiData?: any;

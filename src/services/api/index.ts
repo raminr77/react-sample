@@ -3,15 +3,15 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { store } from 'store';
 import { redirect } from 'utils/url';
 import { sendLog } from 'services/log';
-import { SNACKBAR_TYPES } from 'constants/Snackbar';
-import { userLogoutAction } from 'store/user/userSlice';
-import { generateSnackbar } from 'utils/generateSnackbar';
+import { SNACKBAR_TYPES } from 'constants/snackbar';
+import { userLogoutAction } from 'store/user/user-slice';
+import { generateSnackbar } from 'utils/generate-snackbar';
 import { serviceGet, servicePost } from 'services/api/initialize';
 import {
   INDEX_PAGE_ROUTE,
   NOT_FOUND_ROUTE,
   USER_LOGIN_ROUTE
-} from 'routes/RedirectRoutes';
+} from 'routes/redirect-routes';
 
 function handleResponse({
   response,

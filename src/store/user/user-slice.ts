@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { REDUCER_NAMES } from 'constants/reducerNames';
+import { REDUCER_NAMES } from 'constants/reducer-names';
 
 const initialState = {
   isAuthenticated: false // for private route system

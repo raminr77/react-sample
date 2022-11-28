@@ -6,10 +6,10 @@ import {
 } from 'react-router-dom';
 
 import { NotFoundPage } from 'pages/404';
-import ScrollToTop from 'routes/ScrollToTop';
-import { PAGE_ROUTES } from 'routes/PageRoutes';
-import { PrivateRoute } from 'routes/PrivateRoute';
-import { NOT_FOUND_ROUTE } from 'routes/RedirectRoutes';
+import ScrollToTop from 'routes/scroll-to-top';
+import { PAGE_ROUTES } from 'routes/page-routes';
+import { PrivateRoute } from 'routes/private-route';
+import { NOT_FOUND_ROUTE } from 'routes/redirect-routes';
 
 export function Routes() {
   return (

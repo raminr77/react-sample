@@ -2,8 +2,8 @@ import QS from 'qs';
 import axios from 'axios';
 import { isMobile } from 'react-device-detect';
 
-import { generateSnackbar } from 'utils/generateSnackbar';
-import { CONNECTION_ERROR } from 'constants/ErrorMessages';
+import { generateSnackbar } from 'utils/generate-snackbar';
+import { CONNECTION_ERROR } from 'constants/error-messages';
 
 const TOKEN = ''; // Read Your TOKEN
 const MAX_REQUEST_PER_SECOND = 20;

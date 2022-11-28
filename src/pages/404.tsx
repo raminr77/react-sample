@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';
+import { INDEX_PAGE_ROUTE } from 'routes/redirect-routes';
 
 export function NotFoundPage() {
   return (

@@ -1,32 +1,24 @@
 import { apiRequestObject } from 'utils/api';
-import { REQUEST_TYPE } from 'constants/RequestType';
+import { REQUEST_TYPES } from 'constants/request-types';
 import { removeUndefinedFromObject } from 'utils/object';
 
-const url = '/photos/';
+const API_URL = '/photos/';
 
-export const transformer = ({
-  data
-}: {
-  data: {
-    url: string;
-    title: string;
-    albumId: number;
-  }[];
-}) => {
+export const transformer = ({ data }: any) => {
   // change or convert response
-  return data?.slice(0, 5)?.map((item) =>
+  return data?.slice(0, 5)?.map(({ title, url, albumId }: any) =>
     removeUndefinedFromObject({
       // just 5 item
-      title: item.title || '',
-      url: item.url || '',
-      album: item.albumId === 1 ? 'A' : 'B'
+      url,
+      title,
+      album: albumId === 1 ? 'A' : 'B'
     })
   );
 };
 
 export const getIndexPageData = apiRequestObject({
-  url,
-  type: REQUEST_TYPE.GET,
+  url: API_URL,
+  type: REQUEST_TYPES.GET,
   inputTransformer: ({ albumId }: { albumId: number }) => ({
     // change or convert your data
     albumId

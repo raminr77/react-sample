@@ -1,4 +1,4 @@
-export const REQUEST_TYPE: {
+export const REQUEST_TYPES: {
   GET: 'GET';
   POST: 'POST';
 } = {
