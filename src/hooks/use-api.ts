@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useSelector } from 'react-redux';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -110,7 +111,7 @@ export const useAPI = ({
     if (requestOnLoad) {
       request(requestDataOnLoad);
     }
-  }, memoizedDependenciesOnLoad);
+  }, [memoizedDependenciesOnLoad]);
 
   const cancelRequest = () => {
     apiMethod?.cancel?.();

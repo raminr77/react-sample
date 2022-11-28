@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { noop } from 'lodash';
 import { sendLog } from 'services/log';
 import { useEffect, useState } from 'react';
