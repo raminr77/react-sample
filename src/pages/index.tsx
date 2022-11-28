@@ -9,10 +9,10 @@ export function IndexPage() {
   const [showMore, setShowMore] = useState(false);
   // usePageData Example
   const { reload, pending } = usePageData({
-    apiMethod: getIndexPageData,
     disabled: false,
     dataCached: true,
     expireTime: 5000,
+    apiMethod: getIndexPageData,
     apiData: {
       // ... your API data
       albumId: 1,
@@ -27,7 +27,7 @@ export function IndexPage() {
     apiMethod: getIndexPageData,
     requestDataOnLoad: { albumId: 2 },
     // onError: (error) => console.log('API ERROR:', error),
-    onSuccess: (response: []) => setData([...data, ...response])
+    onSuccess: (response) => setData(response)
   });
 
   const apiRequest = () => request();
