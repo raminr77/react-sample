@@ -1,3 +1,5 @@
+export const SNACKBAR_EVENT_NAME = 'GenerateSnackbar';
+
 export const SNACKBAR_TYPES: {
   INFO: 'info';
   ERROR: 'error';

@@ -1,18 +1,14 @@
 import { get, post, CancelToken } from 'services/api';
 import { REQUEST_TYPES } from 'constants/request-types';
 
-type RequestList = {
-  [key: string]: number;
-};
-
-const REQUEST_LIST: RequestList = {};
 const MIN_TIME_FOR_DUPLICATE_REQUEST = 1000;
+const REQUEST_LIST: Record<string, number> = {};
 
 interface Properties {
   url: string;
-  type: 'GET' | 'POST';
-  transformer: (data: any) => unknown;
-  inputTransformer: (data: any) => unknown;
+  type: GRequestMethod;
+  transformer: (data: any) => any;
+  inputTransformer: (data: any) => any;
 }
 
 export function apiRequestObject({
@@ -23,7 +19,7 @@ export function apiRequestObject({
 }: Properties) {
   const source = CancelToken.source();
 
-  const apiCall = (data: unknown, options = {}) => {
+  const apiCall = (data: any, options = {}) => {
     // Cancel Duplicate Request
     const REQUEST_HASH = `[${type}][${url}][${JSON.stringify(data)}]`;
 
@@ -49,7 +45,7 @@ export function apiRequestObject({
     return new Promise((resolve, reject) => {
       try {
         // RESPONSE
-        const handleResponse = (response: unknown) => {
+        const handleResponse = (response: any) => {
           if (transformer) {
             resolve(transformer({ data: response }));
           }

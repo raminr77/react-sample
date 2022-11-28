@@ -1,5 +1,5 @@
 import React from 'react';
-import { INDEX_PAGE_ROUTE } from 'routes/redirect-routes';
+import { INDEX_PAGE_ROUTE } from 'routes/route-path';
 
 // PAGES
 import { IndexPage } from 'pages';

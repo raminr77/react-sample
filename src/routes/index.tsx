@@ -1,15 +1,15 @@
 import {
-  BrowserRouter as Router,
-  Routes as Switch,
   Route,
-  Navigate
+  Navigate,
+  Routes as Switch,
+  BrowserRouter as Router
 } from 'react-router-dom';
 
 import { NotFoundPage } from 'pages/404';
-import ScrollToTop from 'routes/scroll-to-top';
 import { PAGE_ROUTES } from 'routes/page-routes';
+import { ScrollToTop } from 'routes/scroll-to-top';
 import { PrivateRoute } from 'routes/private-route';
-import { NOT_FOUND_ROUTE } from 'routes/redirect-routes';
+import { NOT_FOUND_ROUTE } from 'routes/route-path';
 
 export function Routes() {
   return (

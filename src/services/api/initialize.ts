@@ -44,7 +44,6 @@ $axios.interceptors.request.use((config) => {
   const isInPreviousSecond = diffTime < 1000;
 
   if (isInPreviousSecond) {
-    // eslint-disable-next-line no-plusplus
     requestPerSecondCount++;
   } else {
     requestPerSecondCount = 0;

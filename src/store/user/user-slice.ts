@@ -10,7 +10,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userLogoutAction: (state) => {
-      // eslint-disable-next-line no-param-reassign
       state.isAuthenticated = false;
     }
   }

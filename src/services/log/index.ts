@@ -1,10 +1,13 @@
+import { REQUEST_TYPES } from 'constants/request-types';
+
 const LOG_STACK = [];
+
 export const sendLog = ({
-  method = 'GET',
   message = 'Network Error',
+  method = REQUEST_TYPES.GET,
   url = `[ PAGE ] ${window.location.href}`
 }: {
-  method?: 'GET' | 'POST';
+  method?: GRequestMethod;
   message: string;
   url?: string;
 }): void => {

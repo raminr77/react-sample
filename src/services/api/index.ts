@@ -4,14 +4,11 @@ import { store } from 'store';
 import { redirect } from 'utils/url';
 import { sendLog } from 'services/log';
 import { SNACKBAR_TYPES } from 'constants/snackbar';
+import { REQUEST_TYPES } from 'constants/request-types';
 import { userLogoutAction } from 'store/user/user-slice';
 import { generateSnackbar } from 'utils/generate-snackbar';
 import { serviceGet, servicePost } from 'services/api/initialize';
-import {
-  INDEX_PAGE_ROUTE,
-  NOT_FOUND_ROUTE,
-  USER_LOGIN_ROUTE
-} from 'routes/redirect-routes';
+import { INDEX_PAGE_ROUTE, NOT_FOUND_ROUTE, USER_LOGIN_ROUTE } from 'routes/route-path';
 
 function handleResponse({
   response,
@@ -64,7 +61,7 @@ function get({ url, config }: { url: string; config?: AxiosRequestConfig }) {
         handleResponse({ response, reject, resolve });
       })
       .catch((error) => {
-        sendLog({ url, method: 'GET', message: 'GET Request Is Failed.' });
+        sendLog({ url, method: REQUEST_TYPES.GET, message: 'GET Request Is Failed.' });
         reject(error);
       });
   });
@@ -75,8 +72,8 @@ function post({
   data,
   config
 }: {
+  data?: any;
   url: string;
-  data?: unknown;
   config?: AxiosRequestConfig;
 }) {
   return new Promise((resolve, reject) => {
@@ -85,7 +82,7 @@ function post({
         handleResponse({ response, reject, resolve });
       })
       .catch((error) => {
-        sendLog({ url, method: 'POST', message: 'POST Request Is Failed.' });
+        sendLog({ url, method: REQUEST_TYPES.POST, message: 'POST Request Is Failed.' });
         reject(error);
       });
   });

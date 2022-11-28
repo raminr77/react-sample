@@ -11,7 +11,10 @@ interface Properties {
   expireTime?: number;
 }
 
-export const checkAPICacheTime = ({ name, expireTime = 600_000 }: Properties) => {
+export const checkAPICacheTime = ({
+  name,
+  expireTime = 600_000
+}: Properties): boolean => {
   const cacheTime = CACHE_STORE[name]?.expireTime || 0;
   const diffTime = Date.now() - expireTime;
   if (diffTime < cacheTime) {
@@ -21,14 +24,14 @@ export const checkAPICacheTime = ({ name, expireTime = 600_000 }: Properties) =>
   return false;
 };
 
-export const hasAPICache = (name: string) => {
+export const hasAPICache = (name: string): boolean => {
   return !!CACHE_STORE[name];
 };
 
-export const getAPICacheData = (name: string) => {
+export const getAPICacheData = (name: string): any => {
   return CACHE_STORE[name].data;
 };
 
-export const setAPICache = ({ name, data }: { name: string; data: any }) => {
+export const setAPICache = ({ name, data }: { name: string; data: any }): void => {
   CACHE_STORE[name] = { data, expireTime: Date.now() };
 };

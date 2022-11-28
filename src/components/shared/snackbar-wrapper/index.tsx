@@ -2,7 +2,11 @@
 import { useEffect } from 'react';
 import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
-import { SNACKBAR_POSITIONS, SNACKBAR_TYPES } from 'constants/snackbar';
+import {
+  SNACKBAR_TYPES,
+  SNACKBAR_POSITIONS,
+  SNACKBAR_EVENT_NAME
+} from 'constants/snackbar';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -63,10 +67,10 @@ export function SnackbarWrapper() {
 
   useEffect(() => {
     // @ts-ignore: Unreachable code error
-    window.addEventListener('GenerateSnackbar', createSnackBar);
+    window.addEventListener(SNACKBAR_EVENT_NAME, createSnackBar);
     return () => {
       // @ts-ignore: Unreachable code error
-      window.removeEventListener('GenerateSnackbar', createSnackBar);
+      window.removeEventListener(SNACKBAR_EVENT_NAME, createSnackBar);
     };
   }, []);
 

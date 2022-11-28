@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import { useState } from 'react';
-import { useAPI } from 'hooks/useApi';
-import { usePageData } from 'hooks/usePageData';
+import { useAPI } from 'hooks/use-api';
+import { usePageData } from 'hooks/use-page-data';
 import { getIndexPageData } from 'api/index-page/get-index-page-data';
 
 export function IndexPage() {

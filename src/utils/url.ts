@@ -1,7 +1,7 @@
 import QS from 'qs';
 import { useNavigate } from 'react-router-dom';
 
-export const getCurrentUrl = () => {
+export const getCurrentUrl = (): string => {
   try {
     return decodeURI(`${window.location.pathname}${window.location.search}`);
   } catch {
@@ -9,7 +9,11 @@ export const getCurrentUrl = () => {
   }
 };
 
-export const attachObjectQueriesToUrl = (url = '/', object = {}, encode = false) => {
+export const attachObjectQueriesToUrl = (
+  url = '/',
+  object = {},
+  encode = false
+): string => {
   const currentQSIndex = url.indexOf('?');
   if (currentQSIndex > -1) {
     return `${url}&${QS.stringify(object, { encode })}`;

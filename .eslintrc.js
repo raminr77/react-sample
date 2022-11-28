@@ -41,7 +41,10 @@ module.exports = {
         allowEmptyCatch: true
       }
     ],
+    'no-plusplus': 'off',
     'unicorn/no-null': 'off',
+    'no-param-reassign': 'off',
+    'unicorn/prefer-spread': 'off',
     'unicorn/filename-case': 'off',
     'unicorn/prefer-node-protocol': 0,
     'unicorn/no-array-reduce': 'off',

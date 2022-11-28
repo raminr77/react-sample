@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { noop } from 'lodash';
 import { redirect } from 'utils/url';
 import { userSelectors } from 'store/user/user-selectors';
-import { INDEX_PAGE_ROUTE } from 'routes/redirect-routes';
+import { INDEX_PAGE_ROUTE } from 'routes/route-path';
 import {
   hasAPICache,
   setAPICache,
@@ -19,8 +19,8 @@ interface Properties {
   dataCached?: boolean;
   onFinally?: () => void;
   requestOnLoad?: boolean;
-  requestDataOnLoad?: unknown;
-  dependenciesOnLoad?: unknown[];
+  requestDataOnLoad?: any;
+  dependenciesOnLoad?: any[];
   onError?: (error: string) => void;
   onSuccess?: (response: any) => void;
   onUploadProgressCallback?: (response: any) => void;
@@ -44,7 +44,7 @@ export const useAPI = ({
   const CACHE_NAME = `CACHE_API_REQUEST_[${apiMethod.url}]`;
   const { isAuthenticated } = useSelector(userSelectors.userInfo);
 
-  const onUploadProgress = (progressEvent: unknown) => {
+  const onUploadProgress = (progressEvent: any) => {
     onUploadProgressCallback?.(progressEvent);
   };
 
