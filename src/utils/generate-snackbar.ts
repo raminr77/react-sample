@@ -1,4 +1,4 @@
-import { SNACKBAR_EVENT_NAME } from 'constants/snackbar';
+import { SNACKBAR_EVENT_NAME } from 'constants/Snackbar';
 
 export function generateSnackbar(options: SnackBarEvent) {
   if (typeof CustomEvent === 'undefined') return;

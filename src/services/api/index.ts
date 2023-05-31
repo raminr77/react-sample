@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { store } from 'store';
 import { redirect } from 'utils/url';
 import { sendLog } from 'services/log';
-import { SNACKBAR_TYPES } from 'constants/snackbar';
+import { SNACKBAR_TYPES } from 'constants/Snackbar';
 import { REQUEST_TYPES } from 'constants/request-types';
 import { userLogoutAction } from 'store/user/user-slice';
 import { generateSnackbar } from 'utils/generate-snackbar';
