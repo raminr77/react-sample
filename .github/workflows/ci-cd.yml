@@ -26,4 +26,4 @@ jobs:
           aws-region: us-east-1
 
       - name: deploy static site to s3 bucket
-        run: aws s3 sync ./build s3://react-appp101
+        run: aws s3 sync build/ s3://react-appp101
