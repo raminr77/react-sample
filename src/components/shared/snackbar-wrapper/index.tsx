@@ -6,7 +6,7 @@ import {
   SNACKBAR_TYPES,
   SNACKBAR_POSITIONS,
   SNACKBAR_EVENT_NAME
-} from 'constants/snackbar';
+} from 'constants/Snackbar';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 
