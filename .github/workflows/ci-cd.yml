@@ -1,29 +1,41 @@
-name: automate-react-s3
+name: Trivy Scan and Docker Push
 
 on:
- push:
-   branches:
-     - main
+  push:
+    branches:
+      - main
+
 jobs:
-  deploy:
+  trivy-scan:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: setupnode
-        uses: actions/setup-node@v2
+    - name: Set up Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'react:latest'
+        format: 'table'
+        output: 'vun.txt'  # Save Trivy scan results to vun.txt
 
+    - name: Run Trivy Scan on Docker Image
+      run: |
+        docker build -t react:latest .
+        trivy image --exit-code 1 myapp:latest
 
-      - run: yarn install
-      - run: yarn build
+    - name: Run Trivy Scan on Filesystem
+      run: trivy fs --exit-code 1 .
 
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+    - name: Log in to Docker Hub
+      if: success()
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: deploy static site to s3 bucket
-        run: aws s3 sync build/ s3://react-appp101
+    - name: Push Docker Image to Docker Hub
+      if: success()
+      run: docker push react:latest
+
+    - name: Save Trivy Scan Results
+      if: always()
+      run: mv vun.txt $GITHUB_WORKSPACE/vun.txt
