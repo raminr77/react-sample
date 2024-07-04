@@ -20,10 +20,13 @@ jobs:
         format: 'table'
         output: 'vun.txt'  # Save Trivy scan results to vun.txt
 
+    - name: Save Trivy Scan Results
+      run: mv vun.txt $GITHUB_WORKSPACE/vun.txt
+
     - name: Run Trivy Scan on Docker Image
       run: |
         docker build -t react:latest .
-        trivy image --exit-code 1 myapp:latest
+        trivy image --exit-code 1 react:latest
 
     - name: Run Trivy Scan on Filesystem
       run: trivy fs --exit-code 1 .
@@ -35,7 +38,3 @@ jobs:
     - name: Push Docker Image to Docker Hub
       if: success()
       run: docker push react:latest
-
-    - name: Save Trivy Scan Results
-      if: always()
-      run: mv vun.txt $GITHUB_WORKSPACE/vun.txt
