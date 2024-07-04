@@ -1,4 +1,4 @@
-name: Trivy Scan and Docker Push
+name: Build Docker Image and Trivy Scan
 
 on:
   push:
@@ -6,12 +6,22 @@ on:
       - main
 
 jobs:
-  trivy-scan:
+  build-and-scan:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build Docker Image
+      run: |
+        docker buildx build --platform linux/amd64,linux/arm64 -t react:latest .
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Set up Trivy
       uses: aquasecurity/trivy-action@master
@@ -24,16 +34,10 @@ jobs:
       run: mv vun.txt $GITHUB_WORKSPACE/vun.txt
 
     - name: Run Trivy Scan on Docker Image
-      run: |
-        docker build -t react:latest .
-        trivy image --exit-code 1 react:latest
+      run: trivy image --exit-code 1 myapp:latest
 
     - name: Run Trivy Scan on Filesystem
       run: trivy fs --exit-code 1 .
-
-    - name: Log in to Docker Hub
-      if: success()
-      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Push Docker Image to Docker Hub
       if: success()
