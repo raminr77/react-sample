@@ -22,16 +22,14 @@ jobs:
 
     - name: Install Cloud Nuke
       run: |
-        curl -LO https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.10.1/cloud-nuke_linux_amd64
-        chmod +x cloud-nuke_linux_amd64
-        sudo mv cloud-nuke_linux_amd64 /usr/local/bin/cloud-nuke
+        wget https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.10.1/cloud-nuke_linux_amd64 -O cloud-nuke
+        chmod +x cloud-nuke
+        sudo mv cloud-nuke /usr/local/bin/cloud-nuke
 
     - name: Verify Cloud Nuke Installation
       run: |
         /usr/local/bin/cloud-nuke --version
 
     - name: Run Cloud Nuke
-      env:
-        PATH: /usr/local/bin:$PATH
       run: |
-        cloud-nuke aws --region us-east-1 --force
+        /usr/local/bin/cloud-nuke aws --region us-east-1 --force
