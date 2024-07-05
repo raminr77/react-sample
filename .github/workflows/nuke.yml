@@ -20,16 +20,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Get latest Cloud Nuke release
-        id: get-cloud-nuke
+      - name: Download Cloud Nuke v0.37.0
         run: |
-          latest_release=$(curl -s https://api.github.com/repos/gruntwork-io/cloud-nuke/releases/latest | grep "browser_download_url" | grep "linux_amd64" | cut -d '"' -f 4)
-          echo "::set-output name=url::$latest_release"
-
-      - name: Download Cloud Nuke
-        run: |
-          url=$(echo "${{ steps.get-cloud-nuke.outputs.url }}")
-          wget $url -O cloud-nuke
+          wget https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.37.0/cloud-nuke_linux_amd64 -O cloud-nuke
           chmod +x cloud-nuke
           sudo mv cloud-nuke /usr/local/bin/cloud-nuke
 
