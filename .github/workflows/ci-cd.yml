@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3.2.0
+      uses: actions/checkout@v2
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
@@ -28,13 +28,13 @@ jobs:
       with:
         image-ref: 'react:latest'
         format: 'table'
-        output: 'vun.txt'  # Save Trivy scan results to vun.txt
-
-    - name: Save Trivy Scan Results
-      run: mv vun.txt $GITHUB_WORKSPACE/vun.txt
+        output: './vulnerabilities.txt'  # Save Trivy scan results directly to the source directory
 
     - name: Run Trivy Scan on Docker Image
       run: trivy image --exit-code 1 react:latest
+
+    - name: Run Trivy Scan on Filesystem
+      run: trivy fs --exit-code 1 .
 
     - name: Push Docker Image to Docker Hub
       if: success()
