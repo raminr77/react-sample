@@ -29,10 +29,10 @@ jobs:
         sudo dpkg -i trivy_0.34.0_Linux-64bit.deb
 
     - name: Run Trivy Scan on Docker Image
-      run: trivy image --exit-code 1 --format table --output ./vulnerabilities.txt react:latest
+      run: trivy image --exit-code 1 --format json --output ./vulnerabilities.txt react:latest
 
     - name: Run Trivy Scan on Filesystem
-      run: trivy fs --exit-code 1 .
+      run: trivy fs --exit-code 1 --format json --output ./filesystem-vulnerabilities.txt .
 
     - name: Push Docker Image to Docker Hub
       if: success()
