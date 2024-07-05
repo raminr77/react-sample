@@ -29,11 +29,25 @@ jobs:
         sudo dpkg -i trivy_0.34.0_Linux-64bit.deb
 
     - name: Run Trivy Scan on Docker Image
-      run: trivy image --format json --output ./vulnerabilities.txt amanvermaclouddrove/react:latest
+      run: trivy image --exit-code 0 --format json --output ./vulnerabilities.json amanvermaclouddrove/react:latest
 
-    - name: Run Trivy Scan on Filesystem
-      run: trivy fs --format json --output ./filesystem-vulnerabilities.txt .
+    - name: Check for Critical and High Vulnerabilities
+      id: check_vulnerabilities
+      run: |
+        jq '.Results[].Vulnerabilities[] | select(.Severity == "CRITICAL" or .Severity == "HIGH")' vulnerabilities.json > critical_and_high_vulnerabilities.json
+        if [ -s critical_and_high_vulnerabilities.json ]; then
+          echo "found=true" >> $GITHUB_ENV
+        else
+          echo "found=false" >> $GITHUB_ENV
+        fi
+
+    - name: Fail if Critical or High Vulnerabilities Found
+      if: env.found == 'true'
+      run: |
+        echo "Critical or high vulnerabilities found:"
+        cat critical_and_high_vulnerabilities.json
+        exit 1
 
     - name: Push Docker Image to Docker Hub
-      if: success()
+      if: env.found == 'false'
       run: docker push amanvermaclouddrove/react:latest
