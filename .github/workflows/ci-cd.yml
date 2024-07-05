@@ -23,15 +23,13 @@ jobs:
       run: |
         docker build -t react:latest .
 
-    - name: Set up Trivy
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: 'react:latest'
-        format: 'table'
-        output: './vulnerabilities.txt'  # Save Trivy scan results directly to the source directory
+    - name: Install Trivy
+      run: |
+        wget https://github.com/aquasecurity/trivy/releases/download/v0.34.0/trivy_0.34.0_Linux-64bit.deb
+        sudo dpkg -i trivy_0.34.0_Linux-64bit.deb
 
     - name: Run Trivy Scan on Docker Image
-      run: trivy image --exit-code 1 react:latest
+      run: trivy image --exit-code 1 --format table --output ./vulnerabilities.txt react:latest
 
     - name: Run Trivy Scan on Filesystem
       run: trivy fs --exit-code 1 .
