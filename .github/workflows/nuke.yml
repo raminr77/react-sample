@@ -20,11 +20,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Install Cloud Nuke
+    - name: Download Cloud Nuke
       run: |
         wget https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.10.1/cloud-nuke_linux_amd64 -O cloud-nuke
-        chmod +x cloud-nuke
+
+    - name: Move Cloud Nuke to /usr/local/bin
+      run: |
         sudo mv cloud-nuke /usr/local/bin/cloud-nuke
+        sudo chmod u+x /usr/local/bin/cloud-nuke
 
     - name: Verify Cloud Nuke Installation
       run: |
