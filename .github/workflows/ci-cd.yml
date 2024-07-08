@@ -25,8 +25,11 @@ jobs:
 
     - name: Install Trivy
       run: |
-        wget https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.37.1/cloud-nuke_darwin_amd64
-        sudo dpkg -i trivy_0.34.0_Linux-64bit.deb
+        sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+        wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+        echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+        sudo apt-get update
+        sudo apt-get install -y trivy
 
     - name: Run Trivy Scan on Docker Image
       run: trivy image --exit-code 0 --format json --output ./vulnerabilities.json amanvermaclouddrove/react:latest
@@ -39,7 +42,6 @@ jobs:
           echo "found=true" >> $GITHUB_ENV
         else
           echo "found=false" >> $GITHUB_ENV
-        fi
 
     - name: Fail if Critical or High Vulnerabilities Found
       if: env.found == 'true'
