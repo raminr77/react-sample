@@ -29,7 +29,12 @@ jobs:
       run: |
         trivy image --exit-code 0 --severity HIGH,CRITICAL --format table amanvermaclouddrove/react:latest > vun.txt
 
+    - name: Run Trivy Scan on Source Code
+      run: |
+        trivy fs --exit-code 0 --severity HIGH,CRITICAL --format table ./src > src_vun.txt
+
     - name: Ensure Directory Exists and Save Trivy Scan Results
       run: |
         mkdir -p react-sample
         mv vun.txt react-sample/vun.txt
+        mv src_vun.txt react-sample/src_vun.txt
