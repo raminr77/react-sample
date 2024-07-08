@@ -2,46 +2,29 @@ name: Destroy AWS Resources
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs at midnight every day
-  workflow_dispatch:    # Allows manual triggering
+    - cron: '0 0 * * *' # Runs at midnight every day
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   destroy-resources:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+    - name: Set up AWS CLI
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
-      - name: Download Cloud Nuke v0.37.0
-        run: |
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh -T git@github.com
-          ssh -o StrictHostKeyChecking=no git@github.com
-          git clone git://github.com/gruntwork-io/cloud-nuke.git
+    - name: Install Cloud Nuke
+      run: |
+        curl -LO https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.37.0/cloud-nuke_linux_amd64
+        chmod +x cloud-nuke_linux_amd64
+        sudo mv cloud-nuke_linux_amd64 /usr/local/bin/cloud-nuke
 
-      - name: Verify Cloud Nuke Installation
-        run: |
-          /usr/local/bin/cloud-nuke --version
-
-      - name: Run Cloud Nuke
-        run: |
-          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force
-
-  re-run:
-    needs: [destroy-resources]
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
-
-    steps:
-      - name: Trigger manual re-run
-        uses: ad-m/github-push-action@master
-        with:
-          branch: ${{ github.head_ref }}
+    - name: Run Cloud Nuke
+      run: |
+        cloud-nuke aws --region us-east-1 --force
