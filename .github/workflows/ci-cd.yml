@@ -32,13 +32,13 @@ jobs:
         sudo apt-get install -y trivy
 
     - name: Run Trivy Scan on Docker Image
-      run: trivy image --exit-code 0 --format json --output ./vulnerabilities.json amanvermaclouddrove/react:latest
+      run: |
+        trivy image --exit-code 0 --severity HIGH,CRITICAL amanvermaclouddrove/react:latest
 
     - name: Check for Critical and High Vulnerabilities
       id: check_vulnerabilities
       run: |
-        jq '.Results[].Vulnerabilities[] | select(.Severity == "CRITICAL" or .Severity == "HIGH")' vulnerabilities.json > critical_and_high_vulnerabilities.json
-        if [ -s critical_and_high_vulnerabilities.json ]; then
+        if [ -n "$(trivy image --exit-code 0 --severity HIGH,CRITICAL --format template --template '{{ with index .Results 0 }}{{ range .Vulnerabilities }}{{ .Severity }}: {{ .VulnerabilityID }}{{ println }}{{ end }}{{ end }}' amanvermaclouddrove/react:latest)" ]; then
           echo "found=true" >> $GITHUB_ENV
         else
           echo "found=false" >> $GITHUB_ENV
@@ -47,7 +47,7 @@ jobs:
       if: env.found == 'true'
       run: |
         echo "Critical or high vulnerabilities found:"
-        cat critical_and_high_vulnerabilities.json
+        trivy image --exit-code 0 --severity HIGH,CRITICAL --format template --template '{{ with index .Results 0 }}{{ range .Vulnerabilities }}{{ .Severity }}: {{ .VulnerabilityID }}{{ println }}{{ end }}{{ end }}' amanvermaclouddrove/react:latest
         exit 1
 
     - name: Push Docker Image to Docker Hub
