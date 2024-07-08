@@ -28,3 +28,6 @@ jobs:
     - name: Run Trivy Scan on Docker Image
       run: |
         trivy image --exit-code 0 --severity HIGH,CRITICAL --format table amanvermaclouddrove/react:latest
+
+    - name: Save Trivy Scan Results
+      run: mv vun.txt react-sample/vun.txt
