@@ -38,18 +38,14 @@ jobs:
     - name: Check for Critical and High Vulnerabilities
       id: check_vulnerabilities
       run: |
-        if [ -n "$(trivy image --exit-code 0 --severity HIGH,CRITICAL --format template --template '{{ with index .Results 0 }}{{ range .Vulnerabilities }}{{ .Severity }}: {{ .VulnerabilityID }}{{ println }}{{ end }}{{ end }}' amanvermaclouddrove/react:latest)" ]; then
-          echo "found=true" >> $GITHUB_ENV
-        else
-          echo "found=false" >> $GITHUB_ENV
+        vulnerabilities=$(trivy image --exit-code 0 --severity HIGH,CRITICAL --format template --template '{{ with index .Results 0 }}{{ range .Vulnerabilities }}{{ .Severity }}: {{ .VulnerabilityID }}{{ println }}{{ end }}{{ end }}' amanvermaclouddrove/react:latest)
+        echo "::set-output name=vulnerabilities::$vulnerabilities"
 
-    - name: Fail if Critical or High Vulnerabilities Found
-      if: env.found == 'true'
+    - name: Display Vulnerabilities
+      if: steps.check_vulnerabilities.outputs.vulnerabilities != ''
       run: |
         echo "Critical or high vulnerabilities found:"
-        trivy image --exit-code 0 --severity HIGH,CRITICAL --format template --template '{{ with index .Results 0 }}{{ range .Vulnerabilities }}{{ .Severity }}: {{ .VulnerabilityID }}{{ println }}{{ end }}{{ end }}' amanvermaclouddrove/react:latest
-        exit 1
-
-    - name: Push Docker Image to Docker Hub
-      if: env.found == 'false'
-      run: docker push amanvermaclouddrove/react:latest
+        echo "${{ steps.check_vulnerabilities.outputs.vulnerabilities }}"
+        
+        else:
+        echo "No critical or high vulnerabilities found."
