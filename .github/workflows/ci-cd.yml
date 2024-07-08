@@ -33,19 +33,4 @@ jobs:
 
     - name: Run Trivy Scan on Docker Image
       run: |
-        trivy image --exit-code 0 --severity HIGH,CRITICAL amanvermaclouddrove/react:latest
-
-    - name: Check for Critical and High Vulnerabilities
-      id: check_vulnerabilities
-      run: |
-        vulnerabilities=$(trivy image --exit-code 0 --severity HIGH,CRITICAL --format template --template '{{ with index .Results 0 }}{{ range .Vulnerabilities }}{{ .Severity }}: {{ .VulnerabilityID }}{{ println }}{{ end }}{{ end }}' amanvermaclouddrove/react:latest)
-        echo "::set-output name=vulnerabilities::$vulnerabilities"
-
-    - name: Display Vulnerabilities
-      if: steps.check_vulnerabilities.outputs.vulnerabilities != ''
-      run: |
-        echo "Critical or high vulnerabilities found:"
-        echo "${{ steps.check_vulnerabilities.outputs.vulnerabilities }}"
-        
-        else:
-        echo "No critical or high vulnerabilities found."
+        trivy image --exit-code 0 --severity HIGH,CRITICAL --format table amanvermaclouddrove/react:latest
