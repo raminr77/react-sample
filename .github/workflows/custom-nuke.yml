@@ -34,9 +34,17 @@ jobs:
         run: |
           /usr/local/bin/cloud-nuke aws --list-resource-types
 
-      - name: Run Cloud Nuke Excluding Specific Resources
+      - name: Prepare Exclusions for Cloud Nuke
         env:
           DISABLE_TELEMETRY: true
         run: |
-          # Exclude IAM roles, users, and specific S3 buckets, and nuke resources older than 24 hours
-          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --older-than 24h --exclude-resource-type iam-role --exclude-resource-type iam-user --exclude-resource-type s3
+          # Loop through each excluded resource name file and construct exclusion flags
+          exclude_args=""
+          for file in excluded_instances.txt excluded_buckets.txt excluded_roles.txt excluded_users.txt; do
+            if [ -f "$file" ]; then
+              exclude_args+=" --exclude-resource-name $(cat $file)"
+            fi
+          done
+
+          # Run Cloud Nuke with exclusion flags and other parameters
+          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --older-than 24h $exclude_args
