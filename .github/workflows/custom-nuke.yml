@@ -31,7 +31,5 @@ jobs:
           /usr/local/bin/cloud-nuke --version
 
       - name: Run Cloud Nuke Excluding S3 and EC2 Resources
-        env:
-          DISABLE_TELEMETRY: true
         run: |
           /usr/local/bin/cloud-nuke aws --exclude-resource-type s3 --exclude-resource-type ec2 --force
