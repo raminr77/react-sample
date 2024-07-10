@@ -47,4 +47,4 @@ jobs:
           done
 
           # Run Cloud Nuke with exclusion flags and other parameters
-          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --older-than 24h $exclude_args
+          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --older-than 24h 
