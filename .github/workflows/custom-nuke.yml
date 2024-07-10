@@ -1,0 +1,56 @@
+name: Destroy AWS Resources
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs at midnight every day
+  workflow_dispatch:    # Allows manual triggering
+
+jobs:
+  destroy-resources:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Install Cloud Nuke
+        run: |
+          curl -LO https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.37.1/cloud-nuke_linux_amd64
+          chmod +x cloud-nuke_linux_amd64
+          sudo mv cloud-nuke_linux_amd64 /usr/local/bin/cloud-nuke
+
+      - name: Verify Cloud Nuke Installation
+        run: |
+          /usr/local/bin/cloud-nuke --version
+
+      - name: Exclude EC2 Instances older than 24 hours
+        run: |
+          INSTANCE_IDS=$(aws ec2 describe-instances --query "Reservations[*].Instances[?LaunchTime<='$(date -d '24 hours ago' --utc +%Y-%m-%dT%H:%M:%SZ)'].InstanceId" --output text)
+          echo "Excluded instance IDs: $INSTANCE_IDS"
+          echo $INSTANCE_IDS > excluded_instances.txt
+
+      - name: Exclude S3 Buckets older than 24 hours
+        run: |
+          BUCKET_NAMES=$(aws s3api list-buckets --query "Buckets[?CreationDate<='$(date -d '24 hours ago' --utc +%Y-%m-%dT%H:%M:%SZ)'].Name" --output text)
+          echo "Excluded bucket names: $BUCKET_NAMES"
+          echo $BUCKET_NAMES > excluded_buckets.txt
+
+      - name: Exclude IAM Roles and Users created by root
+        run: |
+          ROLE_NAMES=$(aws iam list-roles --query "Roles[?Arn=='arn:aws:iam::024358026541:role/*'].RoleName" --output text)
+          USER_NAMES=$(aws iam list-users --query "Users[?Arn=='arn:aws:iam::024358026541:user/*'].UserName" --output text)
+          echo "Excluded role names: $ROLE_NAMES"
+          echo "Excluded user names: $USER_NAMES"
+          echo $ROLE_NAMES > excluded_roles.txt
+          echo $USER_NAMES > excluded_users.txt
+
+      - name: Run Cloud Nuke
+        run: |
+          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --exclude-resource-names $(cat excluded_instances.txt) $(cat excluded_buckets.txt) $(cat excluded_roles.txt) $(cat excluded_users.txt)
