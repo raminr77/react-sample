@@ -30,21 +30,8 @@ jobs:
         run: |
           /usr/local/bin/cloud-nuke --version
 
-      - name: List Supported Resource Types
-        run: |
-          /usr/local/bin/cloud-nuke aws --list-resource-types
-
-      - name: Prepare Exclusions for Cloud Nuke
+      - name: Run Cloud Nuke Excluding S3 and EC2 Resources
         env:
           DISABLE_TELEMETRY: true
         run: |
-          # Loop through each excluded resource name file and construct exclusion flags
-          exclude_args=""
-          for file in excluded_instances.txt excluded_buckets.txt excluded_roles.txt excluded_users.txt; do
-            if [ -f "$file" ]; then
-              exclude_args+=" --exclude-resource-name $(cat $file)"
-            fi
-          done
-
-          # Run Cloud Nuke with exclusion flags and other parameters
-          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --older-than 24h 
+          /usr/local/bin/cloud-nuke aws --exclude-resource-type s3 --exclude-resource-type ec2 --force
