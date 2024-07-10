@@ -30,27 +30,11 @@ jobs:
         run: |
           /usr/local/bin/cloud-nuke --version
 
-      - name: Exclude EC2 Instances older than 24 hours
+      - name: List Supported Resource Types
         run: |
-          INSTANCE_IDS=$(aws ec2 describe-instances --query "Reservations[*].Instances[?LaunchTime<='$(date -d '24 hours ago' --utc +%Y-%m-%dT%H:%M:%SZ)'].InstanceId" --output text)
-          echo "Excluded instance IDs: $INSTANCE_IDS"
-          echo $INSTANCE_IDS > excluded_instances.txt
+          /usr/local/bin/cloud-nuke aws --list-resource-types
 
-      - name: Exclude S3 Buckets older than 24 hours
+      - name: Run Cloud Nuke Excluding Specific Resources
         run: |
-          BUCKET_NAMES=$(aws s3api list-buckets --query "Buckets[?CreationDate<='$(date -d '24 hours ago' --utc +%Y-%m-%dT%H:%M:%SZ)'].Name" --output text)
-          echo "Excluded bucket names: $BUCKET_NAMES"
-          echo $BUCKET_NAMES > excluded_buckets.txt
-
-      - name: Exclude IAM Roles and Users created by root
-        run: |
-          ROLE_NAMES=$(aws iam list-roles --query "Roles[?Arn=='arn:aws:iam::024358026541:role/*'].RoleName" --output text)
-          USER_NAMES=$(aws iam list-users --query "Users[?Arn=='arn:aws:iam::024358026541:user/*'].UserName" --output text)
-          echo "Excluded role names: $ROLE_NAMES"
-          echo "Excluded user names: $USER_NAMES"
-          echo $ROLE_NAMES > excluded_roles.txt
-          echo $USER_NAMES > excluded_users.txt
-
-      - name: Run Cloud Nuke
-        run: |
-          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --exclude-resource-names $(cat excluded_instances.txt) $(cat excluded_buckets.txt) $(cat excluded_roles.txt) $(cat excluded_users.txt)
+          # Exclude IAM roles, users, and specific S3 buckets, and nuke resources older than 24 hours
+          /usr/local/bin/cloud-nuke aws --region us-east-1 --region us-east-2 --force --older-than 24h --exclude-resource-type iam-role --exclude-resource-type iam-user --exclude-resource-type s3
