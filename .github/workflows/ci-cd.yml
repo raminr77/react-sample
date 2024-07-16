@@ -29,7 +29,3 @@ jobs:
       run: |
         trivy image --exit-code 0 --severity HIGH,CRITICAL --format table amanvermaclouddrove/react:latest 
 
-    - name: Run Trivy Scan on Source Code
-      run: |
-        trivy fs --exit-code 0 --severity HIGH,CRITICAL --format table
-
