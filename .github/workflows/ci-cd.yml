@@ -1,49 +1,43 @@
-name: Deploy Azure Static Web App
+name: Azure Static Web Apps CI/CD
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    name: Build and Deploy Job
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
 
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "build" # Built app content directory - optional
 
-    - name: Create Resource Group
-      run: |
-        az group create --name myResourceGroup --location eastus
-
-    - name: Create Static Web App
-      run: |
-        az staticwebapp create \
-          --name my-static-web-app \
-          --resource-group myResourceGroup \
-          --source https://github.com/${{ github.repository }} \
-          --location eastus \
-          --branch main \
-          --app-location "/" \
-          --output-location "build"
-
-    - name: Get Static Web App Deployment Token
-      run: |
-        DEPLOYMENT_TOKEN=$(az staticwebapp secrets list \
-          --name my-static-web-app \
-          --resource-group myResourceGroup \
-          --query "properties.apiKey" -o tsv)
-        echo "DEPLOYMENT_TOKEN=$DEPLOYMENT_TOKEN" >> $GITHUB_ENV
-
-    - name: Build and Deploy
-      uses: Azure/static-web-apps-deploy@v1
-      with:
-        azure_static_web_apps_api_token: ${{ env.DEPLOYMENT_TOKEN }}
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        action: "upload"
-        app_location: "/"
-        output_location: "build"
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: "close"
