@@ -1,4 +1,4 @@
-# Pull Official Base Image
+# Pull Official Base Image.
 FROM node:latest
 
 # Set Working Directory
