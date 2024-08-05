@@ -1,29 +1,49 @@
-name: automate-react-s3
+name: Deploy Azure Static Web App
 
 on:
- push:
-   branches:
-     - main
+  push:
+    branches:
+      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: setupnode
-        uses: actions/setup-node@v2
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Create Resource Group
+      run: |
+        az group create --name myResourceGroup --location eastus
 
-      - run: yarn install
-      - run: yarn build
+    - name: Create Static Web App
+      run: |
+        az staticwebapp create \
+          --name my-static-web-app \
+          --resource-group myResourceGroup \
+          --source https://github.com/${{ github.repository }} \
+          --location eastus \
+          --branch main \
+          --app-location "/" \
+          --output-location "build"
 
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+    - name: Get Static Web App Deployment Token
+      run: |
+        DEPLOYMENT_TOKEN=$(az staticwebapp secrets list \
+          --name my-static-web-app \
+          --resource-group myResourceGroup \
+          --query "properties.apiKey" -o tsv)
+        echo "DEPLOYMENT_TOKEN=$DEPLOYMENT_TOKEN" >> $GITHUB_ENV
 
-      - name: deploy static site to s3 bucket
-        run: aws s3 sync build/ s3://react-appp101
+    - name: Build and Deploy
+      uses: Azure/static-web-apps-deploy@v1
+      with:
+        azure_static_web_apps_api_token: ${{ env.DEPLOYMENT_TOKEN }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        action: "upload"
+        app_location: "/"
+        output_location: "build"
