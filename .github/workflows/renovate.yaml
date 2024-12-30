@@ -1,0 +1,31 @@
+name: Build Docker Image, Trivy Scan, and Renovate
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0/15 * * * *'
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get token
+      id: get_token
+      uses: actions/create-github-app-token@v1
+      with:
+        private-key: ${{ secrets.private_key }}
+        app-id: ${{ secrets.app_id }}
+        owner: ${{ github.repository_owner }}
+        repositories: 'react-sample'
+
+    - name: Checkout
+      uses: actions/checkout@v4.2.2
+
+    - name: Self-hosted Renovate
+      uses: renovatebot/github-action@v41.0.7
+      with:
+        configurationFile: example/renovate-config.js
+        token: '${{ steps.get_token.outputs.token }}'
