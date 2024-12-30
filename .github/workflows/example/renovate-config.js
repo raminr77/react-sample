@@ -6,7 +6,7 @@ module.exports = {
   platform: 'github',
   forkProcessing: 'enabled',
   dryRun: 'full',
-  repositories: ['renovate-tests/cocoapods1', 'renovate-tests/gomod1'],
+  repositories: ['react-sample', 'Cloud_native_app'],
   packageRules: [
     {
       description: 'lockFileMaintenance',
