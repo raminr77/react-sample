@@ -6,7 +6,7 @@ module.exports = {
   platform: 'github',
   forkProcessing: 'enabled',
   dryRun: 'full',
-  repositories: ['react-sample', 'Cloud_native_app'],
+  repositories: ['startbootstrap-creative'],
   packageRules: [
     {
       description: 'lockFileMaintenance',
