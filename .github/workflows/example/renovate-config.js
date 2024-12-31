@@ -6,7 +6,7 @@ module.exports = {
   platform: 'github',
   forkProcessing: 'enabled',
   dryRun: 'full',
-  repositories: ['startbootstrap-creative'],
+  repositories: ['terraform-aws-vpc'],
   packageRules: [
     {
       description: 'lockFileMaintenance',
