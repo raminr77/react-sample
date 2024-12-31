@@ -5,7 +5,6 @@ on:
 jobs:
   renovate:
     uses: amanverma678/shared-workflows/.github/workflows/renovate.yml@main
-    secrets:
-      RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
     with:
       renovate_config: ".github/workflows/example/renovate-config.json"
+      renovate_token: ${{ secrets.RENOVATE_TOKEN }}
