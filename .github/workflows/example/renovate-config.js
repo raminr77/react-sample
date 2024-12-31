@@ -1,12 +1,12 @@
 module.exports = {
   branchPrefix: '',
-  username: 'renovate-release',
+  username: 'amanverma678',
   gitAuthor: 'Renovate Bot <bot@renovateapp.com>',
   onboarding: false,
   platform: 'github',
   forkProcessing: 'enabled',
   dryRun: 'full',
-  repositories: ['terraform-aws-vpc'],
+  repositories: ["terraform-aws-vpc"],
   packageRules: [
     {
       description: 'lockFileMaintenance',
