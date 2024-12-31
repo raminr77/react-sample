@@ -10,5 +10,3 @@ jobs:
     with:
       renovate_config: ".github/workflows/example/renovate-config.json"
       renovate_token: ${{ secrets.RENOVATE_TOKEN }}
-
-
