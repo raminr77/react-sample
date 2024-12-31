@@ -1,11 +1,11 @@
 {
-  "dryRun": "full",
+  "dryRun": true,
   "username": "amanverma678",
   "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
   "onboarding": false,
   "platform": "github",
   "forkProcessing": "enabled",
-  "repositories": ['react-sample'],
+  "repositories": ["react-sample"],
   "packageRules": [
     {
       "description": "lockFileMaintenance",
@@ -22,3 +22,4 @@
     }
   ]
 }
+
