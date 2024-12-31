@@ -1,19 +1,14 @@
 name: Renovate
+
 on:
   push:
   workflow_dispatch:
-  
+
 jobs:
   renovate:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Self-hosted Renovate
-        uses: renovatebot/github-action@v41.0.7
-        with:
-          configurationFile: .github/workflows/example/renovate-config.json
-          token: ${{ secrets.RENOVATE_TOKEN }}
-        env:
-          LOG_LEVEL: debug
+    uses: amanverma678/shared-workflows/.github/workflows/renovate.yml@main
+    with:
+      renovate_config: ".github/workflows/example/renovate-config.json"
+      renovate_token: ${{ secrets.RENOVATE_TOKEN }}
+
 
