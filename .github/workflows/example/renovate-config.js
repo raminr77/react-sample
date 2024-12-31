@@ -1,6 +1,6 @@
 {
   "dryRun": "full",
-  "username": "renovate-release",
+  "username": "amanverma678",
   "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
   "onboarding": false,
   "platform": "github",
