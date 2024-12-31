@@ -6,7 +6,7 @@
   "onboarding": false,
   "platform": "github",
   "forkProcessing": "enabled",
-  "repositories": ["amanverma678/react-sample"],
+  "repositories": ["raminr77/react-sample"],
   "packageRules": [
     {
       "description": "lockFileMaintenance",
