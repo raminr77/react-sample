@@ -9,3 +9,5 @@ jobs:
       renovate_config: ".github/workflows/example/renovate-config.json"
     secrets:
       RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+    env:
+      RENOVATE_PLATFORM_COMMIT: 'true'
