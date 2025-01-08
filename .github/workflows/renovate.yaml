@@ -4,10 +4,11 @@ on:
   workflow_dispatch:
 jobs:
   renovate:
+    env:
+      RENOVATE_PLATFORM_COMMIT: 'true'
     uses: amanverma678/shared-workflows/.github/workflows/renovate.yml@main
     with:
       renovate_config: ".github/workflows/example/renovate-config.json"
     secrets:
       RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
-    env:
-      RENOVATE_PLATFORM_COMMIT: 'true'
+
