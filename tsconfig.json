@@ -1,0 +1,19 @@
+{
+  "files": [],
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "types": ["node"],
+    "target": "ES2015",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+}

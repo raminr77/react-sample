@@ -1,0 +1,15 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
+  "rules": {
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind"]
+      }
+    ],
+    "max-nesting-depth": 4,
+    "at-rule-no-unknown": null,
+    "color-no-invalid-hex": true,
+    "unit-allowed-list": ["px", "rem", "%", "deg", "fr", "s"]
+  }
+}

@@ -1,0 +1,12 @@
+npm run check-types ||
+(
+    echo '❌ Failed Type check.'
+    false;
+)
+
+echo '🔎 Formatting your code ...';
+
+npm run lint:style
+npx lint-staged
+
+echo '✅ Done.'
