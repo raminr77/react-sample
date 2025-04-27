@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { logoutAction } from '@/shared/store/features/user/user-slices';
-import { useGetMainQuery } from '@/shared/services/user-api copy';
+import { useGetMainQuery } from '@/shared/services/main-api';
 
 export function MainPage() {
   const dispatch = useDispatch();
