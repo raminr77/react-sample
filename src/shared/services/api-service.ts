@@ -7,7 +7,7 @@ import { API_TAGS } from './api-tags';
 export const apiService = createApi({
   reducerPath: 'apiService',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_BASE_URL}/api/v1`
+    baseUrl: API_BASE_URL
   }),
   tagTypes: API_TAGS,
   endpoints: () => ({})

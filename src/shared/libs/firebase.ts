@@ -6,7 +6,7 @@ import {
 import { initializeApp } from 'firebase/app';
 
 import { APP_DATA, FIREBASE_CONFIGS } from '@/shared/constants';
-import { isLocal, toast } from '@/shared/helpers';
+import { isLocal } from '@/shared/helpers';
 
 const FIREBASE_APP = initializeApp(FIREBASE_CONFIGS);
 const FIREBASE_MESSAGING = getMessaging(FIREBASE_APP);
@@ -16,7 +16,7 @@ export async function requestNotificationPermission() {
     const permission = await Notification.requestPermission();
     if (permission === 'granted') {
       const token = await getMessagingToken(FIREBASE_MESSAGING, {
-        vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY
+        vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY ?? null
       });
       if (isLocal()) {
         console.log(`- FCM Token [${APP_DATA.name.toUpperCase()}]:`, token);
@@ -26,7 +26,6 @@ export async function requestNotificationPermission() {
     }
     return null;
   } catch {
-    toast.error({ message: 'We need permission to send notification. 🥹' });
     throw Error('Error: Getting notification permission!');
   }
 }

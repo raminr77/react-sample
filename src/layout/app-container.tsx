@@ -30,7 +30,7 @@ export function AppContainer({ isPrivate, children }: AppContainerProps) {
     >
       <AppNotification />
 
-      <div className='w-full px-5 mt-3 pb-24 z-0 min-md:max-w-xl'>{children}</div>
+      <div className='w-full px-5 z-0 min-md:max-w-xl'>{children}</div>
     </div>
   );
 }

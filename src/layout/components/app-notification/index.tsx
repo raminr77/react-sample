@@ -37,16 +37,16 @@ export function AppNotification() {
   return (
     <div
       className={clsx(
-        'w-full h-dvh fixed top-0 left-0 z-50 bg-white/90 select-none flex items-center justify-center flex-col gap-4',
+        'w-full fixed bg-white top-0 left-0 h-dvh flex items-center justify-center flex-col gap-4',
         animator({ name: 'fadeIn' })
       )}
     >
       <span>Allow to enable notifications?</span>
       <div className='flex items-center justify-center gap-3 mt-2'>
-        <button className='w-full' onClick={() => handleUserAction(false)}>
+        <button className='border py-2 px-4' onClick={() => handleUserAction(false)}>
           No
         </button>
-        <button className='w-full' onClick={() => handleUserAction(true)}>
+        <button className='border py-2 px-4' onClick={() => handleUserAction(true)}>
           Yes
         </button>
       </div>

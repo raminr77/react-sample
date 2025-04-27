@@ -7,9 +7,10 @@ import { ENDPOINT } from './endpoints';
 export const userApi = apiService.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<LoginResult, LoginQuery>({
-      query: () => ({
+      query: (payload: LoginQuery) => ({
         url: ENDPOINT.login,
-        method: REQUEST_METHODS.POST
+        method: REQUEST_METHODS.POST,
+        body: JSON.stringify(payload)
       })
     })
   })
