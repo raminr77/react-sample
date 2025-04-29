@@ -21,15 +21,15 @@
     "pretty": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss}\"",
     "lint:style": "npx stylelint --fix \"src/**/*.{css,scss}\" --allow-empty-input"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+  },
   "lint-staged": {
     "src/**/*.{json,css,scss}": "prettier --write",
     "src/**/*.{js,ts,tsx,jsx}": [
       "prettier --write",
       "eslint --fix"
     ]
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
