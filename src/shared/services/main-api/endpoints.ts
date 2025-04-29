@@ -1,3 +1,3 @@
 export const ENDPOINT = {
-  main: 'react-sample'
+  main: 'react-sample/'
 } as const;

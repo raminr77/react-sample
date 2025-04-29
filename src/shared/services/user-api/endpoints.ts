@@ -1,3 +1,3 @@
 export const ENDPOINT = {
-  login: 'react-sample'
+  login: 'react-sample/'
 } as const;

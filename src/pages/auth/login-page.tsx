@@ -1,8 +1,9 @@
-import { Link, useNavigate } from 'react-router';
+import { Link, Navigate, useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { clsx } from 'clsx';
 
+import { userSelectors } from '@/shared/store/features/user/user-selectors.ts';
 import { loginAction } from '@/shared/store/features/user/user-slices';
 import { LoginQuery } from '@/shared/services/user-api/types';
 import { useLoginMutation } from '@/shared/services/user-api';
@@ -13,6 +14,11 @@ export function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginRequest, { isLoading }] = useLoginMutation();
+  const { isAuthenticated } = useSelector(userSelectors.userInfo);
+
+  if (isAuthenticated) {
+    return <Navigate to={APP_ROUTES.main} replace />;
+  }
 
   const { register, handleSubmit } = useForm<LoginQuery>({
     defaultValues: {
@@ -72,7 +78,7 @@ export function LoginPage() {
           {isLoading ? 'Loading...' : 'Login'}
         </button>
 
-        <Link to={APP_ROUTES.landing}>Return Home</Link>
+        <Link to={APP_ROUTES.landing}>[ Return Home ]</Link>
       </form>
     </div>
   );

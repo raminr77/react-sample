@@ -12,7 +12,7 @@ export function NotFoundPage() {
       )}
     >
       <h3>404 | Not Found Page</h3>
-      <Link to={APP_ROUTES.landing}>Return Home</Link>
+      <Link to={APP_ROUTES.landing}>[ Return Home ]</Link>
     </main>
   );
 }
