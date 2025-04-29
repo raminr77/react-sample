@@ -24,7 +24,7 @@ export function AppContainer({ isPrivate, children }: AppContainerProps) {
   return (
     <div
       className={clsx(
-        'w-full flex flex-col relative select-none overflow-x-hidden items-center',
+        'w-full flex flex-col relative select-none overflow-x-hidden items-center px-5',
         animator({ name: 'fadeIn' })
       )}
     >
