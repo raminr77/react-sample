@@ -15,6 +15,7 @@ export function MainPage() {
 
   return (
     <main className='flex w-full flex-col items-center justify-center h-dvh gap-6'>
+      <h1 className='text-2xl font-bold'>React Sample</h1>
       <h3 className='flex gap-1'>
         Main Page <span className='text-red-500'>( Protected )</span>
       </h3>

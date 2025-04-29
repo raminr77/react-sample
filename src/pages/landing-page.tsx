@@ -15,7 +15,7 @@ export function LandingPage() {
 
   return (
     <main className='flex flex-col items-center justify-center h-dvh gap-6'>
-      <h3 className='text-2xl'>Landing Page</h3>
+      <h3 className='text-2xl'>React Sample Landing Page</h3>
       {isAuthenticated && <p className='text-slate-400'>You Are Logged In Now</p>}
       <div className='flex items-center justify-center gap-4 flex-wrap'>
         {isAuthenticated ? (
