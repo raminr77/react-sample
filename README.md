@@ -25,6 +25,8 @@ src/
 
 The project includes complete configurations for **ESLint**, **Prettier**, **Stylelint**, **Husky** (pre-commit hooks), and **CI/CD via GitHub Actions**.
 
+In this project we're using `RTK Query` for API request system and `Redux Toolkit` for API cache system and state management.  
+
 ---
 
 ## ⚙️ Getting Started Locally
