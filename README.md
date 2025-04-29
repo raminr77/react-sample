@@ -1,165 +1,136 @@
 # React Sample
 
 [![GitHub stars](https://img.shields.io/github/stars/raminr77/react_sample?style=social)](https://github.com/raminr77/react_sample/)
+[![GitHub_forks](https://img.shields.io/github/forks/raminr77/react_sample?style=social)](https://github.com/raminr77/react_sample/)
 
-## Start your React Project with a ready config!
+# 🚀 React Sample Project
 
-this is a sample of the ReactJs project for starting easily and fast.
+A simple and clean React + TypeScript + Vite starter project, configured with essential tools and structured with best practices gained from 7+ years of frontend development experience.
 <br/>
-In this project, we added some configs and installed some necessary packages. they help you to ready very fast and don't waste time them.
+This is a sample of the ReactJs project for starting easily and fast.
 <br />
 
-## Contents
+## 📁 Project Structure
 
-- [Configs](https://github.com/raminr77/react_sample#Configs)
-- [Packages](https://github.com/raminr77/react_sample#Packages)
-- [Hooks](https://github.com/raminr77/react_sample#Hooks)
-- [Tools (utils)](https://github.com/raminr77/react_sample#tools-utils)
-- [How To Run](https://github.com/raminr77/react_sample#how-to-run)
-- [API Pattern](https://github.com/raminr77/react_sample#api-pattern)
-- [You Can Use In This Project](https://github.com/raminr77/react_sample#you-can-use-in-this-project)
+```
+scripts/                 # For Custom Scripts (Icon Generator, etc.)
+public/                  # Application files (PWA, Icons, Splash Screens, etc.)
+src/
+ ├── pages/              # Application pages (auth, landing, main, etc.)
+ ├── layout/             # Layout components and containers
+ ├── shared/             # Shared logic: helpers, constants, services, types, store
+ ├── styles/             # Global styles (SCSS & Tailwind)
+ └── __test__/           # Unit tests
+```
 
-<br />
-<hr />
-<br />
+The project includes complete configurations for **ESLint**, **Prettier**, **Stylelint**, **Husky** (pre-commit hooks), and **CI/CD via GitHub Actions**.
 
-- ## Configs
+---
 
-  - Eslint
-  - Prettier
-  - Stylelint
-  - Dockerfile
-  - `.env` file
-  - Commit lint
-  - Redux Config
-  - Style Config
-  - SEO & PWA tags
-  - `jsconfig` file
-  - `tsconfig` file
-  - Folder structure
-  - API cache system
-  - Private route system
-  - `lint-staged` config
-  - Custom `manigest.json`
-  - `constants` structure
-  - First loading animation
-  - API Pattern for request
-  - Lock API request system
-  - Cancel duplicate request
-  - Reset default browser CSS
-  - Scroll to the top when route change
-  - Transform data system for API request
-  - Pre-Commit and Commit-Message config (husky)
+## ⚙️ Getting Started Locally
 
-- ## Packages
+### 1. Install Dependencies
 
-### Dependencies
+```bash
+npm install
+```
 
-- TypeScript
-- sass (for component module sass)
-- animate.css (for your animations)
-- tailwindcss (for main style system)
-- lodash (for working easily with array)
-- axios (for API service and request system)
-- classnames (for merge ClassNames and module sass)
-- react-router-dom (for routing system in your project)
-- prop-types (for specify type in your JSX & component file)
-- react-toastify (for notify message to user in your project)
-- react-device-detect (for check devices and specify mobile type)
-- @reduxjs/toolkit & react-redux (for state management in your project)
+### 2. Create the `.env` File
 
-### DevDependencies
+Create your local environment file by copying the example file:
 
-- husky
-- eslint (+ plugins and configs)
-- prettier (+ plugins and configs)
-- stylelint
-- lint-staged
-- eslint-config-airbnb
-- commitlint + config-conventional
-- ## Hooks
+```bash
+cp .env.example .env
+```
 
-  - useApi (for requests)
-  - usePageData (for page requests)
-  - useCopyToClipboard (for copy text)
-  - useOnScreen (for traking an element on screen)
+Then make sure to configure your **Firebase settings** required for push notifications inside `.env`.
 
-- ## Tools (utils)
+If you're just testing the app and don't have Firebase set up, you can use dummy values for now.
 
-  - Snackbar
-  - `htmlDecode` function
-  - URLs for share in social
-  - `generateSnackbar` function
-  - `apiRequestObject` for API pattern
-  - `removeUndefinedFromObject` function
-  - Log system (Empty function for your config)
-  - `redirect` and `attachObjectQueriesToUrl` functions
-  - `truncate` and `shouldTruncate` functions for your texts
-  - `isDemo`, `isProduction`, `isDevelopment`, `appVersion` and `appName` variables
-  - `faToEn`, `enToFa`, `arToFa`, `faPriceToEnNumber` and `formatPrice` functions for your numbers (persian language)
+---
 
-<br />
+## 🐳 Running with Docker
 
-## You Can Use In This Project
+### Build and Run
 
-- You can use the AnimateCSS framework for your animations, add the class `animate__animated` to an element, along with any of the animation names white the `animate__` prefix.
+```bash
+docker build -t react-sample-app .
+docker run -d -p 3000:80 react-sample-app
+```
 
-  `<h1 class="animate__animated animate__bounce">An animated element</h1>`
+Visit: [http://localhost:3000](http://localhost:3000)
 
-  REF: https://animate.style/
+---
 
-- You can use `Vazir` font in this project. for change `EN` to `FA` number with font, use `fa-num-font` and `fa-num-font-bold` class. also you can use `vazir-bold` for bold type.
-- You can import file from `src` address like this:
+## 📦 Using Docker Compose
 
-  `import { INDEX_PAGE_ROUTE } from 'routes/RedirectRoutes';`
+```bash
+docker-compose up --build
+```
 
-<br />
+To stop and remove containers:
 
-## API Pattern
+```bash
+docker-compose down
+```
 
-- Your API
+---
 
-  **TODO**
+## ✅ Testing
 
-- useApi
+Unit tests can be added and placed under the `src/__test__` folder. You can use any preferred framework like Vitest or Jest.
 
-  **TODO**
+---
 
-- usePageData
+## 📄 License
 
-  **TODO**
+This project is open-source and licensed under the [MIT License](LICENSE).
 
-<br />
+## 💡 Tips & Features
 
-## How To Run
+### ✨ Animations
 
-- First Git Clone Or Download Project
-- Copy and rename `.env.example` to `.env`
-- `npm install` or `yarn add`
-- Just Run: `npm start`
-- Run white style watching:
-  - Windows: `npm run dev:windows`
-  - Linux or MaxOs: `npm run dev`
+You can use the [AnimateCSS](https://animate.style/) framework for applying animations by adding the class `animate__animated` and the desired animation class with the `animate__` prefix:
 
-### Other Commands
+```html
+<h1 class="animate__animated animate__bounce">An animated element</h1>
+```
 
-- Test: `npm run test`
-- Build: `npm run build`
-- Eslint: `npm run lint:fix`
-- Prettier: `npm run pretty`
-- Stylelint: `npm run lint:style`
-- Styles (Watching): `npm run styles`
-- Build Styles: `npm run build:styles`
+🔧 **But there's more!** This project includes a custom helper function for generating animation class names easily:
 
-<hr />
+```ts
+animator({ name: 'fadeIn', speed: 'faster' });
+```
 
-### Project TODO
+This will generate appropriate class names automatically.
 
-- [ ] Scripts
-- [ ] Storybook
-- [ ] Test config
-- [ ] E2E test config
-- [ ] Folder Structure
-- [ ] Convert js to ts
-- [ ] Add API pattern Doc to MD file
-- [ ] Add usePageData & UseApi Doc to MD file
+---
+
+### 📁 Import Aliases
+
+You can import modules from the `src` folder using the `@/` alias:
+
+```ts
+import { APP_ROUTES } from '@/shared/constants';
+```
+
+---
+
+## 🧪 Available NPM Commands
+
+Here’s a list of useful scripts for development and maintenance:
+
+| Command           | Description                                  |
+|------------------|----------------------------------------------|
+| `dev`            | Run the project locally using Vite           |
+| `test`           | Run unit tests with Vitest                   |
+| `prepare`        | Prepare Git hooks using Husky                |
+| `lint`           | Run ESLint and fix issues automatically      |
+| `format`         | Format the code using Prettier               |
+| `build`          | Build TypeScript and the app bundle          |
+| `check-lint`     | Check lint issues without fixing             |
+| `check-format`   | Check code formatting                        |
+| `preview`        | Preview production build at port 8080        |
+| `check-types`    | Type-check the project without emitting files|
+| `pretty`         | Format all JS/TS/CSS/SCSS source files       |
+| `lint:style`     | Run Stylelint for style file validation      |

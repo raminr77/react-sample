@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: react-sample-app
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./public:/usr/share/nginx/html/public:ro
+    depends_on: []
