@@ -1,3 +1,4 @@
+export * from './get-share-url';
 export * from './animator';
 export * from './common';
 export * from './toast';

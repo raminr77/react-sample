@@ -13,13 +13,17 @@ import 'animate.css';
 import '@/styles/tailwind.css';
 import '@/styles/main.scss';
 
-createRoot(document.getElementById('app')!).render(
-  <StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={<AppReduxLoader />} persistor={persistor}>
-        <Routes />
-        <Toaster />
-      </PersistGate>
-    </Provider>
-  </StrictMode>
-);
+export function App() {
+  return (
+    <StrictMode>
+      <Provider store={store}>
+        <PersistGate loading={<AppReduxLoader />} persistor={persistor}>
+          <Routes />
+          <Toaster />
+        </PersistGate>
+      </Provider>
+    </StrictMode>
+  );
+}
+
+createRoot(document.getElementById('app')!).render(<App />);
