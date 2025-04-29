@@ -1,19 +1,15 @@
 {
-    "extends": [
-        "stylelint-config-standard",
-        "stylelint-config-prettier",
-        "stylelint-config-sass-guidelines"
+  "extends": ["stylelint-config-standard", "stylelint-config-standard-scss"],
+  "rules": {
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["tailwind"]
+      }
     ],
-    "rules": {
-        "indentation": 2,
-        "max-nesting-depth": 4,
-        "string-quotes": "single",
-        "at-rule-no-unknown": null,
-        "number-leading-zero": null,
-        "color-no-invalid-hex": true,
-        "property-disallowed-list": ["box-shadow"],
-        "selector-id-pattern": "^[A-Z][a-zA-Z0-9_-]+$",
-        "selector-class-pattern": "^[A-Z][a-zA-Z0-9_-]+$",
-        "unit-allowed-list": ["px", "rem", "%", "deg", "fr"]
-    }
+    "max-nesting-depth": 4,
+    "at-rule-no-unknown": null,
+    "color-no-invalid-hex": true,
+    "unit-allowed-list": ["px", "rem", "%", "deg", "fr", "s"]
+  }
 }

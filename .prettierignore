@@ -1,16 +1,18 @@
 *.svg
 *.png
 *.jpg
-/public/*.html
-/src/assets/images/**/*
-/src/assets/videos/**/*
-/src/assets/fonts/**/*
+*.html
 
 # minify css
-/src/styles/reset.min.css
-/src/styles/index.min.css
+*.min.css
 
-node_modules
 # Ignore artifacts:
 build
 coverage
+node_modules
+
+.DS_Store
+.history
+.vscode
+.husky
+.idea

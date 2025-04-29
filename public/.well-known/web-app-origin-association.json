@@ -1,0 +1,10 @@
+{
+  "web_apps": [
+    {
+      "manifest": "https://react-sample.ir/manifest.json",
+      "details": {
+        "paths": ["/"]
+      }
+    }
+  ]
+}
