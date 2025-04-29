@@ -14,7 +14,7 @@ export function LandingPage() {
   return (
     <main className='flex flex-col items-center justify-center h-dvh gap-6'>
       <h3>Landing Page</h3>
-      <div className='flex items-center justify-center gap-4'>
+      <div className='flex items-center justify-center gap-4 flex-wrap'>
         <Link className='border py-3 px-4 rounded' to={APP_ROUTES.login}>
           Login Sample
         </Link>
