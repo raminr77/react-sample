@@ -29,7 +29,7 @@
     ]
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "*"
+    "@rollup/rollup-linux-x64-gnu": "4.6.1"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
