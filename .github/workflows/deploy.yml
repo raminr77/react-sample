@@ -37,10 +37,10 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm ci
-      - name: Run Tests
-        run: npm run test
       - name: Build
         run: npm run build
+      - name: Run Tests
+        run: npm run test
         env:
           VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
           VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
