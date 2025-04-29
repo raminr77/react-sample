@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes as ReactRoutes, Route, useLocation } from 'react-router';
+import { BrowserRouter, Routes as ReactRoutes, Route } from 'react-router';
 
 import { AppContainer } from '@/layout/app-container';
 import { AuthLayout } from '@/layout/auth-layout';
@@ -8,7 +8,7 @@ import { NotFoundPage } from '@/pages/not-found-page';
 import { LoginPage } from '@/pages/auth/login-page';
 import { LandingPage } from '@/pages/landing-page';
 import { MainPage } from '@/pages/main/main-page';
-import { useEffect } from 'react';
+import { ScrollToTop } from '@/shared/helpers';
 
 const ROUTES_DATA = [
   {
@@ -19,14 +19,9 @@ const ROUTES_DATA = [
 ] as const;
 
 export function Routes() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <ReactRoutes>
         <Route index path={APP_ROUTES.landing} element={<LandingPage />} />
 
