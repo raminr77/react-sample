@@ -39,8 +39,6 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Tests
-        run: npm run test
         env:
           VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
           VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
@@ -50,6 +48,8 @@ jobs:
           VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
           VITE_FIREBASE_MEASUREMENT_ID: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
           VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+      - name: Tests
+        run: npm run test
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
