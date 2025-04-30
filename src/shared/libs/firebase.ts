@@ -8,13 +8,13 @@ import { initializeApp } from 'firebase/app';
 import { APP_DATA, FIREBASE_CONFIGS } from '@/shared/constants';
 import { isLocal } from '@/shared/helpers';
 
-const FIREBASE_APP = initializeApp(FIREBASE_CONFIGS);
-const FIREBASE_MESSAGING = getMessaging(FIREBASE_APP);
+const FIREBASE_APP = FIREBASE_CONFIGS.projectId ? initializeApp(FIREBASE_CONFIGS) : null;
+const FIREBASE_MESSAGING = FIREBASE_APP ? getMessaging(FIREBASE_APP) : null;
 
 export async function requestNotificationPermission() {
   try {
     const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
+    if (permission === 'granted' && !!FIREBASE_MESSAGING) {
       const token = await getMessagingToken(FIREBASE_MESSAGING, {
         vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY ?? null
       });
@@ -32,6 +32,7 @@ export async function requestNotificationPermission() {
 
 export function onMessageListener() {
   return new Promise((resolve) => {
+    if (!FIREBASE_MESSAGING) return;
     onMessage(FIREBASE_MESSAGING, (payload) => {
       resolve(payload);
     });
