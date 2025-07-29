@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "react-sample",
   "author": "Ramin Rezaei",
   "homepage": "https://react-sample.ir",
@@ -22,7 +22,7 @@
     "lint:style": "npx stylelint --fix \"src/**/*.{css,scss}\" --allow-empty-input"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+    "@rollup/rollup-linux-x64-gnu": "4.46.2"
   },
   "lint-staged": {
     "src/**/*.{json,css,scss}": "prettier --write",
