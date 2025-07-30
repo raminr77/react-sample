@@ -31,5 +31,6 @@ dist-ssr
 dev-dist/
 
 yarn.lock
+package-lock.json
 
 .env
